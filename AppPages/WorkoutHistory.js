@@ -9,7 +9,7 @@ export default class WorkoutHistory extends Component {
   render() {
     return (
         <Stack.Navigator initialRouteName='WorkoutList' screenOptions={{
-          headerShown: false
+          headerShown: true
       }}>
           <Stack.Screen name="WorkoutList" component={WorkoutList} />
           <Stack.Screen name="AppNav" component={AppNav} />

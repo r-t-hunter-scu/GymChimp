@@ -24,14 +24,23 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  card: {
+    width: '95%', 
+    padding: 10, 
+    margin: 10, 
+    opacity: .9, 
+    backgroundColor: '#695645', 
+    borderWidth: 3, 
+    borderColor: '#EFB905',
+  },
 })
 
 export default ({ navigation }) => (
-  <Card style={{width: '45%', padding: 10, margin: 10, opacity: .9, backgroundColor: '#695645', borderWidth: 3, borderColor: '#EFB905'}}>
+  <Card style={styles.card}>
     <Text style={{color:'#EFB905', fontSize: 20}}>Workout card</Text>
     <Button
       onPress={()=>navigation.navigate('AppNav')}
-      title="Edit"
+      title="add"
       color='white'
     />
   </Card>

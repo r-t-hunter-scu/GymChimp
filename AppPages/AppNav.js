@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
-import NavBar, { NavButton } from 'react-native-nav';
+import { StyleSheet, View } from 'react-native';
+import Search from '../MyComponents/SearchBar';
 
 const styles = StyleSheet.create({
   statusBar: {
@@ -25,30 +25,7 @@ const styles = StyleSheet.create({
 })
 
 export default ({ navigation }) => (
-      <NavBar style={styles}>
-        <NavButton style={styles.navButton} onPress={() => navigation.navigate('WorkoutList')}>
-          <Image style={styles.image}
-            resizeMode={"contain"}
-            source={require('../img/search.png')}
-          />
-        </NavButton>
-        <NavButton style={styles.navButton} onPress={()=>5}>
-          <Image style={styles.image}
-            resizeMode={"contain"}
-            source={require('../img/stats.png')}
-          />
-        </NavButton>
-        <NavButton style={styles.navButton} onPress={()=>5}>
-          <Image style={styles.image}
-            resizeMode={"contain"}
-            source={require('../img/add.png')}
-          />
-        </NavButton>
-        <NavButton style={styles.navButton} onPress={()=>5}>
-          <Image style={styles.image}
-            resizeMode={"contain"}
-            source={require('../img/weight.png')}
-          />
-        </NavButton>
-      </NavBar>
+  <View>
+    <Search/>
+  </View>
 )

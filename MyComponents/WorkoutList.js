@@ -6,8 +6,7 @@ import {
 import WorkoutNav from './WorkoutNav';
 var styles = StyleSheet.create({
   content:{
-      flex:1,
-      flexDirection:'column',
+
   },
 });
 

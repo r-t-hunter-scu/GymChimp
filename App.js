@@ -5,6 +5,8 @@
  * @format
  * @flow strict-local
  */
+// Color theme: dark-brown: #2B2118, light brown: #695645, yellow: #EFB905
+// Card documentation: 
 // navbar documentation: https://morioh.com/p/c472677920a1
 // searchbar documentation: https://callstack.github.io/react-native-paper/searchbar.html
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -34,6 +36,7 @@ const App: () => Node = () => {
     <NavigationContainer theme={MyTheme} >
       <StatusBar barStyle={'light-content'} />
       <Tab.Navigator
+      initialRouteName='New Workout'
       theme={MyTheme}
       screenOptions={({ route }) => ({
         tabBarStyle: {
@@ -44,14 +47,14 @@ const App: () => Node = () => {
           shadowOpacity: 1,
           shadowRadius: 16.0,
           elevation: 24,
-          borderTopLeftRadius: 21,
-          borderTopRightRadius: 20,
+          borderTopLeftRadius: 22,
+          borderTopRightRadius: 22,
           backgroundColor: '#2B2118',
           position: 'absolute',
           bottom: 0,
           padding: 10,
           width: '100%',
-          height: '10%',
+          height: '9.9%',
           zIndex: 0,
       },
         tabBarIcon: ({ focused, color, size, tintColor }) => {
@@ -118,12 +121,10 @@ const App: () => Node = () => {
               />;
             }
           }
-
-          // You can return any component that you like here!
         },
         
         tabBarBackgroundColor: 'white',
-        tabBarActiveTintColor: 'white',
+        tabBarActiveTintColor: 'grey',
         tabBarInactiveTintColor: 'grey',
         tabBarActiveBackgroundColor: '#2B2118',
         tabBarInactiveBackgroundColor: '#2B2118',
@@ -142,8 +143,8 @@ const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
   image: {
-    width: 30,
-    height: 30,
+    width: '100%',
+    height: '100%',
   },
 });
 
