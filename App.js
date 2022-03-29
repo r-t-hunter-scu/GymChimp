@@ -51,7 +51,7 @@ const App: () => Node = () => {
           bottom: 0,
           padding: 10,
           width: '100%',
-          height: 90,
+          height: '10%',
           zIndex: 0,
       },
         tabBarIcon: ({ focused, color, size, tintColor }) => {
