@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
 export default ({ navigation }) => (
   <Card style={{width: '45%', padding: 10, margin: 10, opacity: .9, backgroundColor: '#695645', borderWidth: '3px', borderColor: '#EFB905'}}>
-    <Text style={{color:'#EFB905', fontSize:'20'}}>Workout card</Text>
+    <Text style={{color:'#EFB905', fontSize: 20}}>Workout card</Text>
     <Button
       onPress={()=>navigation.navigate('AppNav')}
       title="Edit"
