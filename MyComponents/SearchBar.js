@@ -1,67 +1,26 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, View } from "react-native";
 import { SearchBar } from "react-native-elements";
+import NavBar, { NavButton, NavTitle } from "react-native-nav";
+import { DATA } from '../localStore/ListOfExercises';
 
-const DATA = [
-{
-	id: "1",
-	title: "Bench",
-},
-{
-	id: "2",
-	title: "Rows",
-},
-{
-	id: "3",
-	title: "Pull-Ups",
-},
-{
-	id: "4",
-	title: "Push-Ups",
-},
-{
-	id: "5",
-	title: "Abs",
-},
-{
-	id: "6",
-	title: "Back",
-},
-{
-	id: "7",
-	title: "Shoulder Press",
-},
-{
-	id: "8",
-	title: "Burpees",
-},
-{
-	id: "9",
-	title: "Curls",
-},
-{
-	id: "10",
-	title: "Leg Curls",
-},
-{
-	id: "11",
-	title: "Nordic Curls",
-},
-{
-	id: "12",
-	title: "Squats",
-},
-];
 
-const Item = ({ title }) => {
+
+const Item = ({ title, imgSource }) => {
 return (
-	<View style={styles.item}>
-	<Text>{title}</Text>
-	</View>
+	<NavBar backgroundColor={'blue'}>
+		<NavTitle>{title}</NavTitle>
+			<NavButton>
+				<Image
+            		source={imgSource}
+    			/>
+			</NavButton>
+	</NavBar>
 );
 };
 
-const renderItem = ({ item }) => <Item title={item.title} />;
+const renderItem = ({ item }) => <Item title={item.title} imgSource={item.imgSource} />;
+
 class Search extends Component {
 constructor(props) {
 	super(props);
@@ -87,12 +46,11 @@ render() {
 	return (
 	<View style={styles.container}>
 		<SearchBar
-		placeholder="Search Here..."
-		lightTheme
-		round
+		placeholder="ie: Bench Press"
+		darkTheme
 		value={this.state.searchValue}
 		onChangeText={(text) => this.searchFunction(text)}
-		autoCorrect={false}
+		autoCorrect={true}
 		/>
 		<FlatList
 		data={this.state.data}
