@@ -18,9 +18,14 @@
     "@react-navigation/stack": "^6.1.1",
     "@rneui/base": "^4.0.0-rc.1",
     "@rneui/themed": "^4.0.0-rc.1",
+    "bcryptjs": "^2.4.3",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
+    "express": "^4.17.3",
     "i": "^0.3.7",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
     "npm": "^8.5.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -33,7 +38,8 @@
     "react-native-screens": "~3.10.1",
     "react-native-shadow-cards": "^1.0.2",
     "react-native-vector-icons": "^9.1.0",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "sequelize": "^6.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

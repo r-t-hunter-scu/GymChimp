@@ -6,7 +6,7 @@ import { Image, StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import ExercisePage from './ExercisePage';
 import WorkoutHistoryPage from './WorkoutHistoryPage';
 
-
+// Main page (loaded first after login page)
 const MainAppTabNavigation: () => Node = () => {
     const isDarkMode = useColorScheme() === 'dark';
     const MyTheme = {
@@ -21,8 +21,12 @@ const MainAppTabNavigation: () => Node = () => {
     },
   };
   return (
+    //Entire app is within a Navigation container
     <NavigationContainer theme={MyTheme} >
+      {/* Setting the status bar (phone icons like battery and cell connection) */}
       <StatusBar barStyle={'light-content'} />
+      {/* Main tab navigation located at bottom of App at all times
+          below we have the stylization of the Tab.Navigator*/}
       <Tab.Navigator
       initialRouteName='New Workout'
       theme={MyTheme}
@@ -116,6 +120,10 @@ const MainAppTabNavigation: () => Node = () => {
         tabBarActiveBackgroundColor: '#2B2118',
         tabBarInactiveBackgroundColor: '#2B2118',
       })}>
+        {/* All Tab.Screens, where the "name" denotes the name to 
+            navigate to using the navigate prop (ie: 
+            navigation.navigate('Profile)). The "component" is which page will
+            be loaded. */}
         <Tab.Screen name="Exercises" component={ExercisePage} />
         <Tab.Screen name="Past Workouts" component={WorkoutHistoryPage} />
         <Tab.Screen name="New Workout" component={WorkoutHistoryPage} />

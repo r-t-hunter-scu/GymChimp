@@ -6,6 +6,7 @@ import { Card } from 'react-native-shadow-cards';
 import { DATA } from '../localStore/ListOfExercises';
 
 
+//How each item(exercise) on the SearchPage will be rendered 
 const Item = ({ title, imgSource }) => {
 return (
 	<TouchableHighlight  onPress={()=>alert("hello")}>
@@ -17,6 +18,7 @@ return (
 );
 };
 
+//creating renderItem function to be used by the FlatList component
 const renderItem = ({ item }) => <Item title={item.title} imgSource={item.imgSource} />;
 
 class Search extends Component {
@@ -31,6 +33,8 @@ constructor(props) {
 	this.arrayholder = DATA;
 }
 
+//Searching through the items in the current search to see
+//if the text currently in the search bar matches any of the entries
 searchFunction = (text) => {
 	const updatedData = this.arrayholder.filter((item) => {
 	const item_data = `${item.title.toUpperCase()})`;
@@ -43,6 +47,8 @@ searchFunction = (text) => {
 render() {
 	return (
 	<View style={styles.container}>
+		{/* SearchBar component + stylization. Also takes in the searchFunction()
+			and runs it whenever the text changes within the Searchbar*/}
 		<SearchBar
 		placeholder="ie: Bench Press"
 		darkTheme
@@ -50,6 +56,7 @@ render() {
 		onChangeText={(text) => this.searchFunction(text)}
 		autoCorrect={true}
 		/>
+		{/* FlatList component rendering the current data */}
 		<FlatList
 		data={this.state.data}
 		renderItem={renderItem}

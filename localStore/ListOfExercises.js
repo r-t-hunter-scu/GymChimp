@@ -1,3 +1,6 @@
+
+//Array of Exercise names and where to find the img to be loaded during the 
+//exercise search
 export const DATA = [
     {
         id: "1",

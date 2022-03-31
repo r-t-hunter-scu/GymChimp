@@ -7,6 +7,8 @@ const Stack = createNativeStackNavigator();
 export default class WorkoutHistory extends Component {
   render() {
     return (
+        //Stack Navigator that starts on the "WorkoutList" and navigates
+        //using a stack format to Excercise search
         <Stack.Navigator initialRouteName='WorkoutList' screenOptions={{
           headerShown: true
       }}>

@@ -10,6 +10,7 @@ var styles = StyleSheet.create({
   },
 });
 
+//lis
 export default ({ navigation }) =>(
           <ScrollView contentContainerStyle={styles.content}
           contentInsetAdjustmentBehavior="automatic">
