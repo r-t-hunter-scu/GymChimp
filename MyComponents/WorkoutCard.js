@@ -2,8 +2,7 @@ import React from 'react';
 import { Button, StyleSheet, Text } from 'react-native';
 import { Card } from 'react-native-shadow-cards';
 const styles = StyleSheet.create({
-  statusBar: {
-    
+  statusBar: {   
     backgroundColor: '#EFB905',
   },
   navBar: {

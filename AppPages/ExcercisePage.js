@@ -1,18 +1,17 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { Component } from 'react';
-import WorkoutList from '../MyComponents/WorkoutList';
-import AppNav from './AppNav';
+import ExcerciseSearch from '../MyComponents/ExcerciseSearch';
 
 const Stack = createNativeStackNavigator();
 
-export default class Excercises extends Component {
+export default class ExcercisePage extends Component {
   render() {
     return (
         <Stack.Navigator initialRouteName='WorkoutList' screenOptions={{
           headerShown: false
       }}>
-          <Stack.Screen name="WorkoutList" component={WorkoutList} />
-          <Stack.Screen name="AppNav" component={AppNav} />
+          <Stack.Screen name="Excercise Search" component={ExcerciseSearch} />
+          <Stack.Screen name="AppNav" component={ExcerciseSearch} />
         </Stack.Navigator>
       );
   }

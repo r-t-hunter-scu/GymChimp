@@ -3,7 +3,7 @@ import {
   ScrollView,
   StyleSheet
 } from 'react-native';
-import WorkoutNav from './WorkoutNav';
+import WorkoutCard from './WorkoutCard';
 var styles = StyleSheet.create({
   content:{
 
@@ -13,11 +13,11 @@ var styles = StyleSheet.create({
 export default ({ navigation }) =>(
           <ScrollView contentContainerStyle={styles.content}
           contentInsetAdjustmentBehavior="automatic">
-            <WorkoutNav navigation={navigation}/>
-            <WorkoutNav navigation={navigation}/>
-            <WorkoutNav navigation={navigation}/>
-            <WorkoutNav navigation={navigation}/>
-            <WorkoutNav navigation={navigation}/>
-            <WorkoutNav navigation={navigation}/>
+            <WorkoutCard navigation={navigation}/>
+            <WorkoutCard  navigation={navigation}/>
+            <WorkoutCard  navigation={navigation}/>
+            <WorkoutCard  navigation={navigation}/>
+            <WorkoutCard  navigation={navigation}/>
+            <WorkoutCard  navigation={navigation}/>
           </ScrollView>
 );

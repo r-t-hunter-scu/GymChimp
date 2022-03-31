@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { Component } from 'react';
+import ExcerciseSearch from '../MyComponents/ExcerciseSearch';
 import WorkoutList from '../MyComponents/WorkoutList';
-import AppNav from './AppNav';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +12,7 @@ export default class WorkoutHistory extends Component {
           headerShown: true
       }}>
           <Stack.Screen name="WorkoutList" component={WorkoutList} />
-          <Stack.Screen name="AppNav" component={AppNav} />
+          <Stack.Screen name="AppNav" component={ExcerciseSearch} />
         </Stack.Navigator>
       );
   }

@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import { FlatList, Image, StyleSheet, View } from "react-native";
+import { Button, FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SearchBar } from "react-native-elements";
-import NavBar, { NavButton, NavTitle } from "react-native-nav";
+import { Card } from 'react-native-shadow-cards';
 import { DATA } from '../localStore/ListOfExercises';
-
 
 
 const Item = ({ title, imgSource }) => {
 return (
-	<NavBar backgroundColor={'blue'}>
-		<NavTitle>{title}</NavTitle>
-			<NavButton>
-				<Image
-            		source={imgSource}
-    			/>
-			</NavButton>
-	</NavBar>
+	<Card style={styles.card}>
+		<Image source={imgSource}/>
+    	<Text style={{color:'#EFB905', fontSize: 30}}>{title}</Text>
+    	<Button
+      	onPress={()=>5}
+      	title="Information"
+      	color='white'
+    	/>
+  </Card>
 );
 };
 
@@ -67,14 +67,36 @@ export default Search;
 const styles = StyleSheet.create({
 container: {
 	marginTop: 0,
-    marginBottom: '55%',
+    marginBottom: '38%',
 	padding: 0,
 },
-item: {
+navBar: {
 	backgroundColor: "#EFB905",
 	padding: 20,
-	marginVertical: 1,
+	marginVertical: 0,
 	marginHorizontal: 0,
 },
+title: {
+    color: '#FFF',
+},
+statusBar: {
+    backgroundColor: '#EFB905',
+},
+image: {
+    width: 30,
+	marginBottom: 15,
+},
+card: {
+    width: '100%', 
+    padding: 10, 
+    margin: 1, 
+    opacity: 1, 
+    backgroundColor: '#695645', 
+    borderWidth: 5, 
+    borderColor: '#2B2118',
+	justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+	flexDirection: 'row'
+  },
 });
 
