@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     height: 30,
   },
   card: {
-    width: '95%', 
+    width: '99%', 
     padding: 10, 
-    margin: 10, 
+    margin: 2, 
     opacity: .9, 
     backgroundColor: '#695645', 
     borderWidth: 3, 

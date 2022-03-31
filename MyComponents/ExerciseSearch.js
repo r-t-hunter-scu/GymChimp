@@ -1,21 +1,19 @@
 import React, { Component } from "react";
-import { Button, FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SearchBar } from "react-native-elements";
+import { TouchableHighlight } from "react-native-gesture-handler";
 import { Card } from 'react-native-shadow-cards';
 import { DATA } from '../localStore/ListOfExercises';
 
 
 const Item = ({ title, imgSource }) => {
 return (
-	<Card style={styles.card}>
+	<TouchableHighlight  onPress={()=>alert("hello")}>
+	<Card style={styles.card} onClick={()=>alert("hello")}>
 		<Image source={imgSource}/>
-    	<Text style={{color:'#EFB905', fontSize: 30}}>{title}</Text>
-    	<Button
-      	onPress={()=>5}
-      	title="Information"
-      	color='white'
-    	/>
-  </Card>
+    	<Text style={{color:'#EFB905', fontSize: 30, justifyContent: 'center'}}>{title}</Text>
+  	</Card>
+  	</TouchableHighlight>
 );
 };
 
@@ -89,14 +87,14 @@ image: {
 card: {
     width: '100%', 
     padding: 10, 
-    margin: 1, 
+    margin: 0, 
     opacity: 1, 
     backgroundColor: '#695645', 
     borderWidth: 5, 
     borderColor: '#2B2118',
-	justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-	flexDirection: 'row'
+    alignItems: 'center',
+	flexDirection: 'row',
+	borderRadius: 0
   },
 });
 

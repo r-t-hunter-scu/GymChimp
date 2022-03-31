@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import type { Node } from 'react';
 import React from 'react';
 import { Image, StatusBar, StyleSheet, useColorScheme } from 'react-native';
-import ExcercisePage from './ExcercisePage';
+import ExercisePage from './ExercisePage';
 import WorkoutHistoryPage from './WorkoutHistoryPage';
 
 
@@ -48,7 +48,7 @@ const MainAppTabNavigation: () => Node = () => {
         tabBarIcon: ({ focused, color, size, tintColor }) => {
           let iconName;
 
-          if (route.name === 'Excercises') {
+          if (route.name === 'Exercises') {
             if(focused) {
               return <Image style={styles.image}
                 resizeMode={"contain"}
@@ -111,13 +111,12 @@ const MainAppTabNavigation: () => Node = () => {
           }
         },
         
-        tabBarBackgroundColor: 'white',
-        tabBarActiveTintColor: 'grey',
+        tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'grey',
         tabBarActiveBackgroundColor: '#2B2118',
         tabBarInactiveBackgroundColor: '#2B2118',
       })}>
-        <Tab.Screen name="Excercises" component={ExcercisePage} />
+        <Tab.Screen name="Exercises" component={ExercisePage} />
         <Tab.Screen name="Past Workouts" component={WorkoutHistoryPage} />
         <Tab.Screen name="New Workout" component={WorkoutHistoryPage} />
         <Tab.Screen name="Weight Room" component={WorkoutHistoryPage} />
