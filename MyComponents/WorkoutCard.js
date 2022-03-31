@@ -38,7 +38,7 @@ export default ({ navigation }) => (
   <Card style={styles.card}>
     <Text style={{color:'#EFB905', fontSize: 20}}>Workout card</Text>
     <Button
-      onPress={()=>navigation.navigate('AppNav')}
+      onPress={()=>navigation.navigate('Exercise Search')}
       title="add"
       color='white'
     />

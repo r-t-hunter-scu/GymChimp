@@ -11,7 +11,7 @@ export default class WorkoutHistory extends Component {
           headerShown: true
       }}>
           <Stack.Screen name="WorkoutList" component={WorkoutList} />
-          <Stack.Screen name="Excercise Search" component={ExercisePage} />
+          <Stack.Screen name="Exercise Search" component={ExercisePage} />
         </Stack.Navigator>
       );
   }
