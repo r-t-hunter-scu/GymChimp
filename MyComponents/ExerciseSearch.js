@@ -52,6 +52,7 @@ render() {
 		<SearchBar
 		placeholder="ie: Bench Press"
 		darkTheme
+		round={true}
 		value={this.state.searchValue}
 		onChangeText={(text) => this.searchFunction(text)}
 		autoCorrect={true}
