@@ -21,9 +21,9 @@ const MainAppTabNavigation: () => Node = () => {
     },
   };
   return (
-    //Entire app is within a Navigation container
+    //Entire app is within a Navigation container (react navigation)
     <NavigationContainer theme={MyTheme} >
-      {/* Setting the status bar (phone icons like battery and cell connection) */}
+      {/* Setting the status bar style (phone icons like battery and cell connection) */}
       <StatusBar barStyle={'light-content'} />
       {/* Main tab navigation located at bottom of App at all times
           below we have the stylization of the Tab.Navigator*/}
@@ -50,8 +50,6 @@ const MainAppTabNavigation: () => Node = () => {
           zIndex: 0,
       },
         tabBarIcon: ({ focused, color, size, tintColor }) => {
-          let iconName;
-
           if (route.name === 'Exercises') {
             if(focused) {
               return <Image style={styles.image}
