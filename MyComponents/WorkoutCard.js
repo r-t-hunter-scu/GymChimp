@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     width: '99%', 
     padding: 10, 
     margin: 2, 
-    opacity: .9, 
+    opacity: 1, 
+    justifyContent: 'center',
     backgroundColor: '#695645', 
     borderWidth: 3, 
     borderColor: '#EFB905',
@@ -38,7 +39,7 @@ export default ({ navigation }) => (
   <Card style={styles.card}>
     <Text style={{color:'#EFB905', fontSize: 20}}>Workout card</Text>
     <Button
-      onPress={()=>navigation.navigate('Exercise Search')}
+      onPress={() => navigation.navigate("Exercise Search")}
       title="add"
       color='white'
     />

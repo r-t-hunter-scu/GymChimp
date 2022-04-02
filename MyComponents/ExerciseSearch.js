@@ -1,23 +1,44 @@
-import React, { Component } from "react";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React, { Component, useState } from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import Modal from "react-native-modal";
 import { Card } from 'react-native-shadow-cards';
+import AboutExercise from '../AppPages/ModalPages/AboutExercise';
+import ExerciseHistory from '../AppPages/ModalPages/ExerciseHistory';
 import { DATA } from '../localStore/ListOfExercises';
-
-
 //How each item(exercise) on the SearchPage will be rendered 
+
 const Item = ({ title, imgSource }) => {
+	const [isModalVisible, setModalVisible] = useState(false);
+	const toggleModal = () => {
+	  setModalVisible(!isModalVisible);
+	};
 return (
-	<TouchableHighlight  onPress={()=>alert("hello")}>
-	<Card style={styles.card} onClick={()=>alert("hello")}>
-		<Image source={imgSource}/>
-    	<Text style={{color:'#EFB905', fontSize: 30, justifyContent: 'center'}}>{title}</Text>
-  	</Card>
-  	</TouchableHighlight>
+	<View>
+		<TouchableHighlight onPress={toggleModal}>
+			<Card style={styles.card}>
+				<Image source={imgSource}/>
+    			<Text style={{color:'#EFB905', fontSize: 30, justifyContent: 'center'}}>{title}</Text>
+  			</Card>
+  		</TouchableHighlight>
+		<Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+	  		<View style={{ borderRadius: 10, overflow: 'hidden'}}>
+			  <Card style={styles.modal} >
+				<Tab.Navigator>
+					<Tab.Screen name="About" children={()=><AboutExercise title={title}/>} />
+        			<Tab.Screen name="History" children={()=><ExerciseHistory />} />
+					<Tab.Screen name="graphs" children={()=><ExerciseHistory />} />
+				</Tab.Navigator>
+  				</Card>
+			</View>
+    	</Modal>
+	</View>
 );
 };
 
+const Tab = createMaterialTopTabNavigator();
 //creating renderItem function to be used by the FlatList component
 const renderItem = ({ item }) => <Item title={item.title} imgSource={item.imgSource} />;
 
@@ -32,6 +53,7 @@ constructor(props) {
 	};
 	this.arrayholder = DATA;
 }
+
 
 //Searching through the items in the current search to see
 //if the text currently in the search bar matches any of the entries
@@ -91,6 +113,12 @@ statusBar: {
 image: {
     width: 30,
 	marginBottom: 15,
+},
+modal: {
+	opacity: 1,
+	width: '100%',
+	height: 550,
+	backgroundColor: '#000',
 },
 card: {
     width: '100%', 
