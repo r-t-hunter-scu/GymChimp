@@ -25,12 +25,12 @@ return (
   		</TouchableHighlight>
 		<Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
 	  		<View style={{ borderRadius: 10, overflow: 'hidden'}}>
-			  <Card style={styles.modal} >
-				<Tab.Navigator>
-					<Tab.Screen name="About" children={()=><AboutExercise title={title}/>} />
-        			<Tab.Screen name="History" children={()=><ExerciseHistory />} />
-					<Tab.Screen name="graphs" children={()=><ExerciseHistory />} />
-				</Tab.Navigator>
+				<Card style={styles.modal} >
+					<Tab.Navigator>
+						<Tab.Screen name="About" children={()=><AboutExercise title={title}/>} />
+        				<Tab.Screen name="History" children={()=><ExerciseHistory />} />
+						<Tab.Screen name="graphs" children={()=><ExerciseHistory />} />
+					</Tab.Navigator>
   				</Card>
 			</View>
     	</Modal>

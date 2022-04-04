@@ -4,6 +4,7 @@ import type { Node } from 'react';
 import React from 'react';
 import { Image, StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import ExercisePage from './ExercisePage';
+import NewWorkoutPage from './NewWorkoutPage';
 import WorkoutHistoryPage from './WorkoutHistoryPage';
 
 // Main page (loaded first after login page)
@@ -124,7 +125,7 @@ const MainAppTabNavigation: () => Node = () => {
             be loaded. */}
         <Tab.Screen name="Exercises" component={ExercisePage} />
         <Tab.Screen name="Past Workouts" component={WorkoutHistoryPage} />
-        <Tab.Screen name="New Workout" component={WorkoutHistoryPage} />
+        <Tab.Screen name="New Workout" component={NewWorkoutPage} />
         <Tab.Screen name="Weight Room" component={WorkoutHistoryPage} />
         <Tab.Screen name="Profile" component={WorkoutHistoryPage} />
       </Tab.Navigator>
