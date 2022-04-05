@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { Component, useState } from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { Button, FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
@@ -21,6 +21,7 @@ return (
 			<Card style={styles.card}>
 				<Image source={imgSource}/>
     			<Text style={{color:'#EFB905', fontSize: 30, justifyContent: 'center'}}>{title}</Text>
+				<Button onPress={toggleModal} title={"but"}></Button>
   			</Card>
   		</TouchableHighlight>
 		<Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>

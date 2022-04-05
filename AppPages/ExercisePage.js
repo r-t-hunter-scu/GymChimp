@@ -6,7 +6,7 @@ import ExerciseSearch from '../MyComponents/ExerciseSearch';
 export default class ExercisePage extends Component {
   render() {
     return (
-        <View>
+        <View style={{marginBottom: '13%'}}>
           <ExerciseSearch/>
         </View>
       );
