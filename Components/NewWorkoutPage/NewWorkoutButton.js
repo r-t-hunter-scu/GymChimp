@@ -5,6 +5,9 @@ import Modal from "react-native-modal";
 import { Card } from 'react-native-shadow-cards';
 import WorkoutComponent from './WorkoutComponent';
 
+
+
+
 export default ({ navigation }) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const toggleModal = () => {
@@ -20,7 +23,7 @@ export default ({ navigation }) => {
             </Card>
         </TouchableHighlight>
 
-        {/* Visualizing Modal onPress which renders Workout Component */}
+        {/* Visualizing Modal onPress which renders WorkoutComponent */}
         <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
             <View style={{borderRadius: 10}}>
                 <Card  style={styles.modalCard}>
