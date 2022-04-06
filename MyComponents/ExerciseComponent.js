@@ -13,6 +13,7 @@ const initialList = [
 export default ({num}) => {
     const [list, setList] = React.useState(initialList);
     const [id, setId] = React.useState(2);
+    //add new set component on press
     const handleAdd = () => {
         const newL = list.concat({id});
         setId(id + 1)
@@ -24,6 +25,7 @@ export default ({num}) => {
     return(
     <View style={{flex: 1, alignItems: 'center'}}>
         <Text style={styles.text}>Squat</Text>
+        {/* rendering list of sets */}
         <FlatList
 		data={list}
 		renderItem={renderItem}

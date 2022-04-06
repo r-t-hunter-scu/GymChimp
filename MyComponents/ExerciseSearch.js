@@ -9,7 +9,6 @@ import AboutExercise from '../AppPages/ModalPages/AboutExercise';
 import ExerciseHistory from '../AppPages/ModalPages/ExerciseHistory';
 import { DATA } from '../localStore/ListOfExercises';
 //How each item(exercise) on the SearchPage will be rendered 
-
 const Item = ({ title, imgSource }) => {
 	const [isModalVisible, setModalVisible] = useState(false);
 	const toggleModal = () => {
@@ -23,6 +22,8 @@ return (
     			<Text style={{color:'#F9EBD7', fontSize: 30, justifyContent: 'center'}}>{title}</Text>
   			</Card>
   		</TouchableHighlight>
+		{/* Each searchable exercise will bring up a pop-up (Modal)
+			that will tell the user about the exercise */}
 		<Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
 	  		<View style={{ borderRadius: 10, overflow: 'hidden'}}>
 				<Card style={styles.modal} >

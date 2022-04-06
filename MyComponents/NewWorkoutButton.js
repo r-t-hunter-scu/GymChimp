@@ -20,7 +20,7 @@ export default ({ navigation }) => {
             </Card>
         </TouchableHighlight>
 
-
+        {/* Visualizing Modal onPress which renders Workout Component */}
         <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
             <View style={{borderRadius: 10}}>
                 <Card  style={styles.modalCard}>
