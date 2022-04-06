@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 // 
-// Color theme: dark-brown: #2B2118, light brown: #695645, yellow: #EFB905
+// Color theme: dark-brown: #2B2118, light brown: #695645, yellow: #EFB905, very-light brown: #F9EBD7
 // Card documentation: 
 // navbar documentation: https://morioh.com/p/c472677920a1
 // searchbar documentation: https://reactnativeelements.com/docs/components/searchbar#calling

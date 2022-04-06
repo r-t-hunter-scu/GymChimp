@@ -3,14 +3,14 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from 'react-native-shadow-cards';
 
 
-export default ({ navigation }) => {
+export default ({ num }) => {
     const [text, onChangeText] = React.useState("Useless Text");
     const [number, onChangeNumber] = React.useState(null);
 
   return(
     <View >
         <Card style={styles.card}>
-            <Text style={styles.text}>1</Text>
+            <Text style={styles.text}>{num}</Text>
             <TextInput keyboardType='numeric' style={styles.TextIn} placeholder="lbs"></TextInput>
             <TextInput keyboardType='numeric' style={styles.TextIn} placeholder="reps" ></TextInput>
             <Button  title={'ADD'} onPress={() => 5}/>
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
         width: 50,
         marginLeft: 10,
         height: 30,
-        borderWidth: 3,
         textAlign: 'center',
         borderRadius: 10
     },
@@ -43,9 +42,9 @@ const styles = StyleSheet.create({
         margin: 2, 
         opacity: 1, 
         height: 75,
-        backgroundColor: '#EFB905', 
+        backgroundColor: '#F9EBD7', 
         borderWidth: 3, 
-        borderColor: '#EFB905',
+        borderColor: '#F9EBD7',
         flexDirection: 'row',
         justifyContent: 'center'
       },

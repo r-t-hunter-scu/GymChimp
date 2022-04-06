@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableHighlight } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
 import { Card } from 'react-native-shadow-cards';
-
+import WorkoutComponent from './WorkoutComponent';
 
 export default ({ navigation }) => {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -22,13 +22,13 @@ export default ({ navigation }) => {
 
 
         <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
-            <View style={{ borderRadius: 10, overflow: 'hidden'}}>
+            <View style={{borderRadius: 10}}>
                 <Card  style={styles.modalCard}>
                     <View style={{justifyContent: 'flex-end', flexDirection: 'row'}}>
                         <Button onPress={toggleModal} title="x"/>
                     </View>
-                    <Text style={styles.text}>Exercises: </Text>
-                    <FlatList></FlatList>
+                    <Text style={styles.text}>Exercises </Text>
+                    <WorkoutComponent />
                 </Card>
             </View>
         </Modal>
@@ -39,7 +39,9 @@ export default ({ navigation }) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 20
+        fontSize: 30,
+        color: 'white',
+        textAlign: 'center'
     },
     card: {
         width: '99%', 
@@ -47,9 +49,9 @@ const styles = StyleSheet.create({
         margin: 2, 
         opacity: 1, 
         justifyContent: 'center',
-        backgroundColor: '#EFB905', 
+        backgroundColor: '#F9EBD7', 
         borderWidth: 3, 
-        borderColor: '#EFB905',
+        borderColor: '#F9EBD7',
       },
     modalCard: {
         height: '95%',
@@ -58,9 +60,9 @@ const styles = StyleSheet.create({
         margin: 2, 
         opacity: 1, 
         justifyContent: 'center',
-        backgroundColor: '#EFB905', 
+        backgroundColor: '#695645', 
         borderWidth: 8, 
         borderRadius: 10,
-        borderColor: '#695645',
+        borderColor: '#F9EBD7',
     },
     })

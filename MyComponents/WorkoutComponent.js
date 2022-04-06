@@ -2,15 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import { Card } from 'react-native-shadow-cards';
-import SetComponent from './SetComponent';
-
+import ExerciseComponent from './ExerciseComponent';
 
 const initialList = [
     {
       id: 1,
     },
   ];
-export default ({num}) => {
+export default ({navigation}) => {
     const [list, setList] = React.useState(initialList);
     const [id, setId] = React.useState(2);
     const handleAdd = () => {
@@ -19,11 +18,10 @@ export default ({num}) => {
         setList(newL);
 
     } 
-    const renderItem = ({ item }) => <SetComponent num={item.id}/>;
+    const renderItem = ({ item }) => <ExerciseComponent num={item.id}/>;
 
     return(
     <View style={{flex: 1, alignItems: 'center'}}>
-        <Text style={styles.text}>Squat</Text>
         <FlatList
 		data={list}
 		renderItem={renderItem}
@@ -31,12 +29,13 @@ export default ({num}) => {
 		/>
         <TouchableHighlight onPress={handleAdd}>
             <Card style={styles.card}>
-                <Text style={styles.text}>Add Set</Text>
+                <Text style={styles.text}>Add Exercise</Text>
             </Card>
         </TouchableHighlight>
     </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     text: {
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
       textAlign: 'center'
     },
     card: {
-        width: 100,
+        width: 150,
         textAlign: 'center',
         backgroundColor: '#2B2118'
     }
