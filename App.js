@@ -15,12 +15,16 @@ import type { Node } from 'react';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import MainAppTabNavigation from './AppPages/MainAppTabNavigation';
+import store from './store/store';
+import { Provider } from 'react-redux'
 
 
 
 const App: () => Node = () => {
   return (
-    <MainAppTabNavigation />
+    <Provider store={store}>
+      <MainAppTabNavigation />
+    </Provider>
   );
 };
 
