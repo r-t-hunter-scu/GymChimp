@@ -21,7 +21,7 @@ export default ({ navigation }) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <TouchableHighlight onPress={() => dispatch(incrementExercises(5))}>
+      <TouchableHighlight onPress={() => dispatch(incrementExercises())}>
         <Card style={styles.card}>
           <Text style={styles.text}>Add Exercise</Text>
         </Card>

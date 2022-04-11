@@ -6,11 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { incrementSets } from "../../store/counterSlice";
 import SetComponent from "./SetComponent";
 
-const l = [
-  {
-    id: 1,
-  },
-];
 export default ({ num }) => {
   const list = useSelector((state) => state.counter.Elist[num - 1].Slist);
   //console.log(list);

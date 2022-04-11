@@ -7,7 +7,7 @@ export const counterSlice = createSlice({
     Elist: [
       {
         id: 1,
-        Evalue: 1,
+        Evalue: 2,
         Slist: [{ id: 1 }],
       },
     ],
@@ -15,8 +15,6 @@ export const counterSlice = createSlice({
   reducers: {
     incrementSets: (state, input) => {
       const idx = input.payload;
-      //console.log();
-      //console.log(state.Elist[1]);
       const id = state.Elist[idx].Evalue;
       const newl = state.Elist[idx].Slist.concat({ id });
       state.Elist[idx].Slist = newl;
