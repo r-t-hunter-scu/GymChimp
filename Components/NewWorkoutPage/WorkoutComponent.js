@@ -11,7 +11,7 @@ export default ({ navigation }) => {
   const dispatch = useDispatch();
   //console.log(list);
   //add new exercise component on button press
-  const renderItem = ({ item }) => <ExerciseComponent num={item.id} />;
+  const renderItem = ({ item }) => <ExerciseComponent Exercise={item.id} />;
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>

@@ -13,6 +13,28 @@ export const counterSlice = createSlice({
     ],
   },
   reducers: {
+    removeSet: (state, input) => {
+      console.log(state.Elist);
+      const Eidx = input.payload[1];
+      const Sidx = input.payload[0];
+      const val = state.Elist[Eidx].Slist[Sidx];
+      const newl = state.Elist[Eidx].Slist.filter(function (ele) {
+        return ele != val;
+      });
+      console.log(val);
+      console.log(newl);
+      var i = val.id - 1;
+      console.log(i);
+      while (i < newl.length) {
+        console.log("here");
+        newl[i].id -= 1;
+        console.log(newl[i].id);
+        i++;
+      }
+      console.log(newl);
+      state.Elist[Eidx].Slist = newl;
+      state.Elist[Eidx].Evalue -= 1;
+    },
     incrementSets: (state, input) => {
       const idx = input.payload;
       const id = state.Elist[idx].Evalue;
@@ -40,6 +62,7 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { incrementExercises, incrementSets } = counterSlice.actions;
+export const { incrementExercises, incrementSets, removeSet } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;

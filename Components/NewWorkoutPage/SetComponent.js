@@ -1,62 +1,43 @@
 import React from "react";
-import {
-  Animated,
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import { Swipeable, TouchableOpacity } from "react-native-gesture-handler";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Swipeable, TouchableHighlight } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
-import { incrementSets } from "../../store/counterSlice";
+import { removeSet } from "../../store/counterSlice";
 
-const useFetchEvents = () => {
+export default ({ Set, Exercise }) => {
+  const data = [Set - 1, Exercise - 1];
   const dispatch = useDispatch();
-  return () => {
-    dispatch(incrementSets(2));
-  };
-};
-
-const renderRightActions = (progress, dragX) => {
-  const fetchEvents = useFetchEvents();
-  const scale = dragX.interpolate({
-    inputRange: [-50, 0],
-    outputRange: [0.7, 0],
-  });
-  return (
-    <>
-      <TouchableOpacity onPress={() => fetchEvents()}>
-        <View
-          style={{
-            backgroundColor: "#EFB905",
-            justifyContent: "center",
-            height: "100%",
-            borderRadius: 3,
-          }}
-        >
-          <Animated.Text
+  const renderRightActions = () => {
+    return (
+      <>
+        <TouchableHighlight onPress={() => dispatch(removeSet(data))}>
+          <View
             style={{
-              color: "white",
-              paddingHorizontal: 10,
-              fontWeight: "500",
-              transform: [{ scale }],
+              backgroundColor: "#EFB905",
+              justifyContent: "center",
+              height: "100%",
+              borderRadius: 3,
             }}
           >
-            Delete
-          </Animated.Text>
-        </View>
-      </TouchableOpacity>
-    </>
-  );
-};
-
-export default ({ num }) => {
+            <Text
+              style={{
+                color: "white",
+                paddingHorizontal: 10,
+                fontWeight: "500",
+              }}
+            >
+              Delete
+            </Text>
+          </View>
+        </TouchableHighlight>
+      </>
+    );
+  };
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <View>
         <View style={styles.card}>
-          <Text style={styles.text}>{num}</Text>
+          <Text style={styles.text}>{Set}</Text>
           <TextInput
             keyboardType="numeric"
             style={styles.TextIn}

@@ -5,13 +5,11 @@ import { SearchBar } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
 import { Card } from "react-native-shadow-cards";
-import { useDispatch } from "react-redux";
 import AboutExercise from "../../AppPages/ModalPages/AboutExercise";
 import ExerciseHistory from "../../AppPages/ModalPages/ExerciseHistory";
 import { DATA } from "../../localStore/ListOfExercises";
 //How each item(exercise) on the SearchPage will be rendered
 const Item = ({ title, imgSource }) => {
-  const dispatch = useDispatch();
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);

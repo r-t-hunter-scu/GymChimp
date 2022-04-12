@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { incrementSets } from "../../store/counterSlice";
 import SetComponent from "./SetComponent";
 
-export default ({ num }) => {
-  const list = useSelector((state) => state.counter.Elist[num - 1].Slist);
-  //console.log(list);
+export default ({ Exercise }) => {
+  const list = useSelector((state) => state.counter.Elist[Exercise - 1].Slist);
   const dispatch = useDispatch();
   //add new set component on press
-  const renderItem = ({ item }) => <SetComponent num={item.id} />;
+  const renderItem = ({ item }) => (
+    <SetComponent Set={item.id} Exercise={Exercise} />
+  );
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
@@ -22,7 +23,7 @@ export default ({ num }) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <TouchableHighlight onPress={() => dispatch(incrementSets(num - 1))}>
+      <TouchableHighlight onPress={() => dispatch(incrementSets(Exercise - 1))}>
         <Card style={styles.card}>
           <Text style={styles.text}>Add Set</Text>
         </Card>
