@@ -10,20 +10,31 @@ export const counterSlice = createSlice({
         id: 1,
         Evalue: 2,
         Ename: "Squat",
-        Slist: [{ id: 1, lbs: "lbs", reps: "reps" }],
+        Slist: [{ id: 1, lbs: "lbs", reps: "reps", completed: true }],
       },
     ],
   },
   reducers: {
     logSet: (state, input) => {
       console.log(input);
-
-      const Eidx = input.payload[3];
-      const Sidx = input.payload[2];
-      const newl = state.Elist[Eidx].Slist;
-      newl[Sidx].reps = input.payload[1];
-      newl[Sidx].lbs = input.payload[0];
-      state.Elist[Eidx].Slist = newl;
+      const lbsString = /^\d+$/.test(input.payload[1]);
+      const repsString = /^\d+$/.test(input.payload[0]);
+      if (
+        (lbsString || input.payload[1] == "") &&
+        (repsString || input.payload[0] == "") &&
+        input.payload[1].length <= 3 &&
+        input.payload[0].length <= 4
+      ) {
+        const Eidx = input.payload[3];
+        const Sidx = input.payload[2];
+        const newl = state.Elist[Eidx].Slist;
+        if (input.payload[1] != "") newl[Sidx].reps = input.payload[1];
+        if (input.payload[0] != "") newl[Sidx].lbs = input.payload[0];
+        newl[Sidx].completed = !newl[Sidx].completed;
+        state.Elist[Eidx].Slist = newl;
+      } else {
+        alert("Enter only digits. (max: 10,000 for lbs and 1,000 for reps)");
+      }
     },
     removeSet: (state, input) => {
       const Eidx = input.payload[1];
@@ -45,7 +56,8 @@ export const counterSlice = createSlice({
       const id = state.Elist[idx].Evalue;
       const lbs = "lbs";
       const reps = "reps";
-      const newl = state.Elist[idx].Slist.concat({ id, lbs, reps });
+      const completed = false;
+      const newl = state.Elist[idx].Slist.concat({ id, lbs, reps, completed });
       state.Elist[idx].Slist = newl;
       state.Elist[idx].Evalue += 1;
     },

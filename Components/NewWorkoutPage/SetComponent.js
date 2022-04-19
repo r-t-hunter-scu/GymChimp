@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import { Swipeable, TouchableHighlight } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { logSet, removeSet } from "../../store/counterSlice";
@@ -47,26 +47,65 @@ export default ({ Set, Exercise }) => {
       </>
     );
   };
-  return (
-    <Swipeable renderRightActions={renderRightActions}>
-      <View>
-        <View style={styles.card}>
-          <Text style={styles.text}>{Set}</Text>
-          <TextInput
-            onChangeText={(newText) => lbsChange(newText)}
-            keyboardType="numeric"
-            style={styles.TextIn}
-            placeholder={thisSet.lbs}
-          ></TextInput>
-          <TextInput
-            onChangeText={(newText) => repsChange(newText)}
-            keyboardType="numeric"
-            style={styles.TextIn}
-            placeholder={thisSet.reps}
-          ></TextInput>
-          <Button title={"ADD"} onPress={() => dispatch(logSet(dispData))} />
+  let sComponent;
+  if (thisSet.completed) {
+    sComponent = (
+      <View style={styles.checkedCard}>
+        <Text style={styles.text}>{Set}</Text>
+        <TextInput
+          onChangeText={(newText) => lbsChange(newText)}
+          keyboardType="numeric"
+          style={styles.TextIn}
+          placeholder={thisSet.lbs}
+        ></TextInput>
+        <TextInput
+          onChangeText={(newText) => repsChange(newText)}
+          keyboardType="numeric"
+          style={styles.TextIn}
+          placeholder={thisSet.reps}
+        ></TextInput>
+        <View style={{ paddingHorizontal: 20 }}>
+          <TouchableHighlight onPress={() => dispatch(logSet(dispData))}>
+            <Image
+              style={styles.image}
+              resizeMode={"contain"}
+              source={require("../../img/check.png")}
+            />
+          </TouchableHighlight>
         </View>
       </View>
+    );
+  } else {
+    sComponent = (
+      <View style={styles.card}>
+        <Text style={styles.text}>{Set}</Text>
+        <TextInput
+          onChangeText={(newText) => lbsChange(newText)}
+          keyboardType="numeric"
+          style={styles.TextIn}
+          placeholder={thisSet.lbs}
+        ></TextInput>
+        <TextInput
+          onChangeText={(newText) => repsChange(newText)}
+          keyboardType="numeric"
+          style={styles.TextIn}
+          placeholder={thisSet.reps}
+        ></TextInput>
+        <View style={{ paddingHorizontal: 20 }}>
+          <TouchableHighlight onPress={() => dispatch(logSet(dispData))}>
+            <Image
+              style={styles.image}
+              resizeMode={"contain"}
+              source={require("../../img/check.png")}
+            />
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+  }
+  return (
+    <Swipeable renderRightActions={renderRightActions}>
+      <View>{sComponent}</View>
     </Swipeable>
   );
 };
@@ -100,6 +139,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
+  checkedCard: {
+    width: "90%",
+    marginLeft: "5%",
+    paddingTop: 20,
+    margin: 2,
+    opacity: 1,
+    height: 75,
+    backgroundColor: "#EFB905",
+    borderWidth: 3,
+    borderRadius: 10,
+    borderColor: "#2B2118",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   deleteButton: {
     backgroundColor: "red",
     height: "100%",
@@ -118,5 +171,9 @@ const styles = StyleSheet.create({
     margin: 5,
     justifyContent: "flex-end",
     alignItems: "flex-end",
+  },
+  image: {
+    width: 30,
+    height: 30,
   },
 });

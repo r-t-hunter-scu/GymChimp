@@ -24,10 +24,10 @@ export default ({ navigation }) => {
       {/* Visualizing Modal onPress which renders WorkoutComponent */}
       <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
         <View style={{ borderRadius: 10 }}>
-          <Card style={styles.modalCard}>
+          <View style={styles.modalCard}>
             <View
               style={{
-                justifyContent: "flex-end",
+                justifyContent: "flex-start",
                 flexDirection: "row",
               }}
             >
@@ -46,9 +46,37 @@ export default ({ navigation }) => {
                 </View>
               </TouchableHighlight>
             </View>
+            <View
+              style={{
+                justifyContent: "flex-end",
+                flexDirection: "row",
+              }}
+            >
+              <TouchableHighlight onPress={toggleModal}>
+                <View
+                  style={{
+                    width: 50,
+                    height: 20,
+                    backgroundColor: "#F9EBD7",
+                    borderRadius: 5,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlign: "center",
+                      color: "#2B2118",
+                      alignContent: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    Finish
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
             <Text style={styles.text}>Exercises </Text>
             <WorkoutComponent />
-          </Card>
+          </View>
         </View>
       </Modal>
     </View>
