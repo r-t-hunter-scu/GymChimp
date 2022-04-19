@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
 import { Card } from "react-native-shadow-cards";
@@ -25,8 +25,26 @@ export default ({ navigation }) => {
       <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
         <View style={{ borderRadius: 10 }}>
           <Card style={styles.modalCard}>
-            <View style={{ justifyContent: "flex-end", flexDirection: "row" }}>
-              <Button onPress={toggleModal} title="x" />
+            <View
+              style={{
+                justifyContent: "flex-end",
+                flexDirection: "row",
+              }}
+            >
+              <TouchableHighlight onPress={toggleModal}>
+                <View
+                  style={{
+                    width: 25,
+                    height: 15,
+                    backgroundColor: "#F9EBD7",
+                    borderRadius: 5,
+                  }}
+                >
+                  <Text style={{ textAlign: "center", color: "#2B2118" }}>
+                    X
+                  </Text>
+                </View>
+              </TouchableHighlight>
             </View>
             <Text style={styles.text}>Exercises </Text>
             <WorkoutComponent />

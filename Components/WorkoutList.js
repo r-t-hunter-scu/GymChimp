@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import Counter from "./Counter";
 import WorkoutCard from "./WorkoutCard";
 var styles = StyleSheet.create({
   content: {},
@@ -18,6 +17,5 @@ export default ({ navigation }) => (
     <WorkoutCard navigation={navigation} />
     <WorkoutCard navigation={navigation} />
     <WorkoutCard navigation={navigation} />
-    <Counter />
   </ScrollView>
 );

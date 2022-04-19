@@ -1,16 +1,30 @@
 import React from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { Swipeable, TouchableHighlight } from "react-native-gesture-handler";
-import { useDispatch } from "react-redux";
-import { removeSet } from "../../store/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logSet, removeSet } from "../../store/counterSlice";
 
 export default ({ Set, Exercise }) => {
-  const data = [Set - 1, Exercise - 1];
+  const numbers = [Set - 1, Exercise - 1];
   const dispatch = useDispatch();
+  const thisSet = useSelector(
+    (state) => state.counter.Elist[Exercise - 1].Slist[Set - 1]
+  );
+  var lbs = "";
+  var reps = "";
+  var dispData = [lbs, reps].concat(numbers);
+  const lbsChange = (text) => {
+    lbs = text;
+    dispData = [lbs, dispData[1]].concat(numbers);
+  };
+  const repsChange = (text) => {
+    reps = text;
+    dispData = [dispData[0], reps].concat(numbers);
+  };
   const renderRightActions = () => {
     return (
       <>
-        <TouchableHighlight onPress={() => dispatch(removeSet(data))}>
+        <TouchableHighlight onPress={() => dispatch(removeSet(numbers))}>
           <View
             style={{
               backgroundColor: "#EFB905",
@@ -39,16 +53,18 @@ export default ({ Set, Exercise }) => {
         <View style={styles.card}>
           <Text style={styles.text}>{Set}</Text>
           <TextInput
+            onChangeText={(newText) => lbsChange(newText)}
             keyboardType="numeric"
             style={styles.TextIn}
-            placeholder="lbs"
+            placeholder={thisSet.lbs}
           ></TextInput>
           <TextInput
+            onChangeText={(newText) => repsChange(newText)}
             keyboardType="numeric"
             style={styles.TextIn}
-            placeholder="reps"
+            placeholder={thisSet.reps}
           ></TextInput>
-          <Button title={"ADD"} onPress={() => 5} />
+          <Button title={"ADD"} onPress={() => dispatch(logSet(dispData))} />
         </View>
       </View>
     </Swipeable>

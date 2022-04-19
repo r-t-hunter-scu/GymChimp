@@ -8,6 +8,7 @@ import SetComponent from "./SetComponent";
 
 export default ({ Exercise }) => {
   const list = useSelector((state) => state.counter.Elist[Exercise - 1].Slist);
+  const Elist = useSelector((state) => state.counter.Elist[Exercise - 1]);
   const dispatch = useDispatch();
   //add new set component on press
   const renderItem = ({ item }) => (
@@ -16,7 +17,7 @@ export default ({ Exercise }) => {
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
-      <Text style={styles.text}>Squat</Text>
+      <Text style={styles.text}>{Elist.Ename}</Text>
       {/* rendering list of sets */}
       <FlatList
         data={list}

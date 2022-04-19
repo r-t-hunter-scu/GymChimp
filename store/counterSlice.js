@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+//EList => List of exercises
+//SList => List of Sets
 export const counterSlice = createSlice({
   name: "counter",
   initialState: {
@@ -8,37 +9,43 @@ export const counterSlice = createSlice({
       {
         id: 1,
         Evalue: 2,
-        Slist: [{ id: 1 }],
+        Ename: "Squat",
+        Slist: [{ id: 1, lbs: "lbs", reps: "reps" }],
       },
     ],
   },
   reducers: {
+    logSet: (state, input) => {
+      console.log(input);
+
+      const Eidx = input.payload[3];
+      const Sidx = input.payload[2];
+      const newl = state.Elist[Eidx].Slist;
+      newl[Sidx].reps = input.payload[1];
+      newl[Sidx].lbs = input.payload[0];
+      state.Elist[Eidx].Slist = newl;
+    },
     removeSet: (state, input) => {
-      console.log(state.Elist);
       const Eidx = input.payload[1];
       const Sidx = input.payload[0];
       const val = state.Elist[Eidx].Slist[Sidx];
       const newl = state.Elist[Eidx].Slist.filter(function (ele) {
         return ele != val;
       });
-      console.log(val);
-      console.log(newl);
       var i = val.id - 1;
-      console.log(i);
       while (i < newl.length) {
-        console.log("here");
         newl[i].id -= 1;
-        console.log(newl[i].id);
         i++;
       }
-      console.log(newl);
       state.Elist[Eidx].Slist = newl;
       state.Elist[Eidx].Evalue -= 1;
     },
     incrementSets: (state, input) => {
       const idx = input.payload;
       const id = state.Elist[idx].Evalue;
-      const newl = state.Elist[idx].Slist.concat({ id });
+      const lbs = "lbs";
+      const reps = "reps";
+      const newl = state.Elist[idx].Slist.concat({ id, lbs, reps });
       state.Elist[idx].Slist = newl;
       state.Elist[idx].Evalue += 1;
     },
@@ -50,11 +57,14 @@ export const counterSlice = createSlice({
       const Slist = [
         {
           id: 1,
+          lbs: "lbs",
+          reps: "reps",
         },
       ];
       const Evalue = 2;
       const id = state.value;
-      const newl = state.Elist.concat({ id, Slist, Evalue });
+      const Ename = "Squat";
+      const newl = state.Elist.concat({ id, Slist, Evalue, Ename });
       state.Elist = newl;
       state.value += 1;
     },
@@ -62,7 +72,7 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { incrementExercises, incrementSets, removeSet } =
+export const { incrementExercises, incrementSets, removeSet, logSet } =
   counterSlice.actions;
 
 export default counterSlice.reducer;

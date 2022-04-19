@@ -9,8 +9,6 @@ import ExerciseComponent from "./ExerciseComponent";
 export default ({ navigation }) => {
   const list = useSelector((state) => state.counter.Elist);
   const dispatch = useDispatch();
-  //console.log(list);
-  //add new exercise component on button press
   const renderItem = ({ item }) => <ExerciseComponent Exercise={item.id} />;
 
   return (
