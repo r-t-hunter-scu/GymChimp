@@ -10,7 +10,7 @@ export const counterSlice = createSlice({
         id: 1,
         Evalue: 2,
         Ename: "Squat",
-        Slist: [{ id: 1, lbs: "lbs", reps: "reps", completed: true }],
+        Slist: [{ id: 1, lbs: "lbs", reps: "reps", completed: false }],
       },
     ],
   },

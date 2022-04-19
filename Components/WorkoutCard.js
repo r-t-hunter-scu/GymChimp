@@ -1,16 +1,15 @@
 import React from "react";
-import { Button, StyleSheet, Text } from "react-native";
-import { Card } from "react-native-shadow-cards";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default ({ navigation }) => (
-  <Card style={styles.card}>
+  <View style={styles.card}>
     <Text style={{ color: "#EFB905", fontSize: 20 }}>Workout card</Text>
     <Button
       onPress={() => navigation.navigate("Exercise Search")}
       title="add"
       color="white"
     />
-  </Card>
+  </View>
 );
 
 const styles = StyleSheet.create({

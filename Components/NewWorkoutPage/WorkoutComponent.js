@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
-import { Card } from "react-native-shadow-cards";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementExercises } from "../../store/counterSlice";
 import ExerciseComponent from "./ExerciseComponent";
@@ -20,9 +19,9 @@ export default ({ navigation }) => {
         keyExtractor={(item) => item.id}
       />
       <TouchableHighlight onPress={() => dispatch(incrementExercises())}>
-        <Card style={styles.card}>
+        <View style={styles.card}>
           <Text style={styles.text}>Add Exercise</Text>
-        </Card>
+        </View>
       </TouchableHighlight>
     </View>
   );
@@ -35,6 +34,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   card: {
+    borderRadius: 5,
     width: 150,
     textAlign: "center",
     backgroundColor: "#2B2118",

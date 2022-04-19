@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
-import { Card } from "react-native-shadow-cards";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementSets } from "../../store/counterSlice";
 import SetComponent from "./SetComponent";
@@ -25,9 +24,9 @@ export default ({ Exercise }) => {
         keyExtractor={(item) => item.id}
       />
       <TouchableHighlight onPress={() => dispatch(incrementSets(Exercise - 1))}>
-        <Card style={styles.card}>
+        <View style={styles.card}>
           <Text style={styles.text}>Add Set</Text>
-        </Card>
+        </View>
       </TouchableHighlight>
     </View>
   );
@@ -43,5 +42,6 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: "center",
     backgroundColor: "#2B2118",
+    borderRadius: 5,
   },
 });

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
-import { Card } from "react-native-shadow-cards";
 import WorkoutComponent from "./WorkoutComponent";
 
 export default ({ navigation }) => {
@@ -14,11 +13,11 @@ export default ({ navigation }) => {
   return (
     <View>
       <TouchableHighlight onPress={toggleModal}>
-        <Card style={styles.card}>
+        <View style={styles.card}>
           <Text style={{ textAlign: "center", color: "#000", fontSize: 20 }}>
             New Empty Workout
           </Text>
-        </Card>
+        </View>
       </TouchableHighlight>
 
       {/* Visualizing Modal onPress which renders WorkoutComponent */}
@@ -90,14 +89,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   card: {
-    width: "99%",
+    width: "97%",
     padding: 10,
-    margin: 2,
+    margin: 5,
     opacity: 1,
+    alignSelf: "center",
     justifyContent: "center",
     backgroundColor: "#F9EBD7",
     borderWidth: 3,
     borderColor: "#F9EBD7",
+    borderRadius: 10,
   },
   modalCard: {
     height: "95%",

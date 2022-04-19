@@ -4,7 +4,6 @@ import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
-import { Card } from "react-native-shadow-cards";
 import AboutExercise from "../../AppPages/ModalPages/AboutExercise";
 import ExerciseHistory from "../../AppPages/ModalPages/ExerciseHistory";
 import { DATA } from "../../localStore/ListOfExercises";
@@ -17,20 +16,20 @@ const Item = ({ title, imgSource }) => {
   return (
     <View>
       <TouchableHighlight onPress={toggleModal}>
-        <Card style={styles.card}>
+        <View style={styles.card}>
           <Image source={imgSource} />
           <Text
             style={{ color: "#F9EBD7", fontSize: 30, justifyContent: "center" }}
           >
             {title}
           </Text>
-        </Card>
+        </View>
       </TouchableHighlight>
       {/* Each searchable exercise will bring up a pop-up (Modal)
 			that will tell the user about the exercise */}
       <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
         <View style={{ borderRadius: 10, overflow: "hidden" }}>
-          <Card style={styles.modal}>
+          <View style={styles.modal}>
             <Tab.Navigator>
               <Tab.Screen
                 name="About"
@@ -39,7 +38,7 @@ const Item = ({ title, imgSource }) => {
               <Tab.Screen name="History" children={() => <ExerciseHistory />} />
               <Tab.Screen name="graphs" children={() => <ExerciseHistory />} />
             </Tab.Navigator>
-          </Card>
+          </View>
         </View>
       </Modal>
     </View>
