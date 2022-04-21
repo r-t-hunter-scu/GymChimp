@@ -1,46 +1,40 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { TouchableNativeFeedback } from "react-native-gesture-handler";
-import Modal from "react-native-modal";
-import AboutExercise from "../../AppPages/ModalPages/AboutExercise";
-import ExerciseHistory from "../../AppPages/ModalPages/ExerciseHistory";
+import { useDispatch } from "react-redux";
 import { DATA } from "../../localStore/ListOfExercises";
+import {
+  incrementExercises,
+  toggleSearchModal,
+} from "../../store/counterSlice";
 //How each item(exercise) on the SearchPage will be rendered
 const Item = ({ title, imgSource }) => {
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
+  const dispatch = useDispatch();
+  const incrementAndClose = () => {
+    dispatch(incrementExercises(title));
+    dispatch(toggleSearchModal());
   };
   return (
     <View>
-      <TouchableNativeFeedback onPress={toggleModal}>
+      <TouchableNativeFeedback onPress={() => incrementAndClose()}>
         <View style={styles.card}>
           <Image source={imgSource} />
-          <Text
-            style={{ color: "#F9EBD7", fontSize: 30, justifyContent: "center" }}
-          >
-            {title}
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-      {/* Each searchable exercise will bring up a pop-up (Modal)
-			that will tell the user about the exercise */}
-      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
-        <View style={{ borderRadius: 10, overflow: "hidden" }}>
-          <View style={styles.modal}>
-            <Tab.Navigator>
-              <Tab.Screen
-                name="About"
-                children={() => <AboutExercise title={title} />}
-              />
-              <Tab.Screen name="History" children={() => <ExerciseHistory />} />
-              <Tab.Screen name="graphs" children={() => <ExerciseHistory />} />
-            </Tab.Navigator>
+          <View style={{ flexWrap: "wrap" }}>
+            <Text
+              style={{
+                color: "#F9EBD7",
+                fontSize: 20,
+                justifyContent: "center",
+                overflow: "scroll",
+              }}
+            >
+              {title}
+            </Text>
           </View>
         </View>
-      </Modal>
+      </TouchableNativeFeedback>
     </View>
   );
 };
@@ -101,17 +95,6 @@ class Search extends Component {
 export default Search;
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 0,
-    marginBottom: "38%",
-    padding: 0,
-  },
-  navBar: {
-    backgroundColor: "#EFB905",
-    padding: 20,
-    marginVertical: 0,
-    marginHorizontal: 0,
-  },
   title: {
     color: "#FFF",
   },
@@ -121,12 +104,6 @@ const styles = StyleSheet.create({
   image: {
     width: 30,
     marginBottom: 15,
-  },
-  modal: {
-    opacity: 1,
-    width: "100%",
-    height: 550,
-    backgroundColor: "#000",
   },
   card: {
     width: "100%",

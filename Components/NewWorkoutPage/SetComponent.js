@@ -1,8 +1,16 @@
 import React from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
-import { Swipeable, TouchableHighlight } from "react-native-gesture-handler";
+import {
+  Swipeable,
+  TouchableNativeFeedback,
+} from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
-import { logSet, removeSet } from "../../store/counterSlice";
+import {
+  lbsChange,
+  logSet,
+  removeSet,
+  repsChange,
+} from "../../store/counterSlice";
 
 export default ({ Set, Exercise }) => {
   const numbers = [Set - 1, Exercise - 1];
@@ -10,21 +18,25 @@ export default ({ Set, Exercise }) => {
   const thisSet = useSelector(
     (state) => state.counter.Elist[Exercise - 1].Slist[Set - 1]
   );
-  var lbs = "";
-  var reps = "";
+  var lbs = thisSet.clbs;
+  var reps = thisSet.creps;
   var dispData = [lbs, reps].concat(numbers);
-  const lbsChange = (text) => {
+  const lbsChangeLocal = (text) => {
+    console.log(lbs);
     lbs = text;
     dispData = [lbs, dispData[1]].concat(numbers);
+    dispatch(lbsChange(dispData));
   };
-  const repsChange = (text) => {
+  const repsChangeLocal = (text) => {
+    console.log(reps);
     reps = text;
     dispData = [dispData[0], reps].concat(numbers);
+    dispatch(repsChange(dispData));
   };
   const renderRightActions = () => {
     return (
       <>
-        <TouchableHighlight onPress={() => dispatch(removeSet(numbers))}>
+        <TouchableNativeFeedback onPress={() => dispatch(removeSet(numbers))}>
           <View
             style={{
               backgroundColor: "#EFB905",
@@ -43,7 +55,7 @@ export default ({ Set, Exercise }) => {
               Delete
             </Text>
           </View>
-        </TouchableHighlight>
+        </TouchableNativeFeedback>
       </>
     );
   };
@@ -53,25 +65,29 @@ export default ({ Set, Exercise }) => {
       <View style={styles.checkedCard}>
         <Text style={styles.text}>{Set}</Text>
         <TextInput
-          onChangeText={(newText) => lbsChange(newText)}
+          onChangeText={(newText) => lbsChangeLocal(newText)}
           keyboardType="numeric"
           style={styles.TextIn}
           placeholder={thisSet.lbs}
         ></TextInput>
         <TextInput
-          onChangeText={(newText) => repsChange(newText)}
+          onChangeText={(newText) => repsChangeLocal(newText)}
           keyboardType="numeric"
           style={styles.TextIn}
           placeholder={thisSet.reps}
         ></TextInput>
         <View style={{ paddingHorizontal: 20 }}>
-          <TouchableHighlight onPress={() => dispatch(logSet(dispData))}>
+          <TouchableNativeFeedback
+            activeOpacity={0.5}
+            underlayColor={"#EFB905"}
+            onPress={() => dispatch(logSet(dispData))}
+          >
             <Image
               style={styles.image}
               resizeMode={"contain"}
               source={require("../../img/check.png")}
             />
-          </TouchableHighlight>
+          </TouchableNativeFeedback>
         </View>
       </View>
     );
@@ -80,25 +96,29 @@ export default ({ Set, Exercise }) => {
       <View style={styles.card}>
         <Text style={styles.text}>{Set}</Text>
         <TextInput
-          onChangeText={(newText) => lbsChange(newText)}
+          onChangeText={(newText) => lbsChangeLocal(newText)}
           keyboardType="numeric"
           style={styles.TextIn}
           placeholder={thisSet.lbs}
         ></TextInput>
         <TextInput
-          onChangeText={(newText) => repsChange(newText)}
+          onChangeText={(newText) => repsChangeLocal(newText)}
           keyboardType="numeric"
           style={styles.TextIn}
           placeholder={thisSet.reps}
         ></TextInput>
         <View style={{ paddingHorizontal: 20 }}>
-          <TouchableHighlight onPress={() => dispatch(logSet(dispData))}>
+          <TouchableNativeFeedback
+            activeOpacity={0.5}
+            underlayColor={"#F9EBD7"}
+            onPress={() => dispatch(logSet(dispData))}
+          >
             <Image
               style={styles.image}
               resizeMode={"contain"}
               source={require("../../img/check.png")}
             />
-          </TouchableHighlight>
+          </TouchableNativeFeedback>
         </View>
       </View>
     );

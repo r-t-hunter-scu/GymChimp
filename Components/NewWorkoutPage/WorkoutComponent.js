@@ -1,8 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
+import {
+  FlatList,
+  TouchableNativeFeedback,
+} from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
-import { incrementExercises } from "../../store/counterSlice";
+import { toggleSearchModal } from "../../store/counterSlice";
 import ExerciseComponent from "./ExerciseComponent";
 
 export default ({ navigation }) => {
@@ -18,11 +21,11 @@ export default ({ navigation }) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <TouchableHighlight onPress={() => dispatch(incrementExercises())}>
+      <TouchableNativeFeedback onPress={() => dispatch(toggleSearchModal())}>
         <View style={styles.card}>
           <Text style={styles.text}>Add Exercise</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableNativeFeedback>
     </View>
   );
 };

@@ -4,17 +4,52 @@ import { createSlice } from "@reduxjs/toolkit";
 export const counterSlice = createSlice({
   name: "counter",
   initialState: {
+    CurrentExerciseModal: false,
+    ExerciseSearchModal: false,
     value: 2,
     Elist: [
       {
         id: 1,
         Evalue: 2,
         Ename: "Squat",
-        Slist: [{ id: 1, lbs: "lbs", reps: "reps", completed: false }],
+        Slist: [
+          {
+            id: 1,
+            clbs: "",
+            creps: "",
+            lbs: "lbs",
+            reps: "reps",
+            completed: false,
+          },
+        ],
       },
     ],
   },
   reducers: {
+    toggleCurrentModal: (state, input) => {
+      //console.log(input);
+      state.CurrentExerciseModal = !state.CurrentExerciseModal;
+      //console.log(state.CurrentExerciseModal);
+    },
+    toggleSearchModal: (state) => {
+      state.ExerciseSearchModal = !state.ExerciseSearchModal;
+    },
+    lbsChange: (state, input) => {
+      if (state.Elist[input.payload[3]].Slist[input.payload[2]].completed) {
+        state.Elist[input.payload[3]].Slist[input.payload[2]].completed = false;
+      }
+      state.Elist[input.payload[3]].Slist[input.payload[2]].clbs =
+        input.payload[0];
+    },
+    repsChange: (state, input) => {
+      if (state.Elist[input.payload[3]].Slist[input.payload[2]].completed) {
+        state.Elist[input.payload[3]].Slist[input.payload[2]].completed = false;
+      }
+      state.Elist[input.payload[3]].Slist[input.payload[2]].creps =
+        input.payload[1];
+    },
+    //Logs a set when a user clicks on the checkmark on the set component
+    //various text scrubbing + checking if there is currently text input in the boxes
     logSet: (state, input) => {
       console.log(input);
       const lbsString = /^\d+$/.test(input.payload[1]);
@@ -36,6 +71,7 @@ export const counterSlice = createSlice({
         alert("Enter only digits. (max: 10,000 for lbs and 1,000 for reps)");
       }
     },
+    //removes a set and decrements id's of all sets past this one
     removeSet: (state, input) => {
       const Eidx = input.payload[1];
       const Sidx = input.payload[0];
@@ -51,6 +87,7 @@ export const counterSlice = createSlice({
       state.Elist[Eidx].Slist = newl;
       state.Elist[Eidx].Evalue -= 1;
     },
+    //adds a set and updates the ct for past sets
     incrementSets: (state, input) => {
       const idx = input.payload;
       const id = state.Elist[idx].Evalue;
@@ -61,11 +98,10 @@ export const counterSlice = createSlice({
       state.Elist[idx].Slist = newl;
       state.Elist[idx].Evalue += 1;
     },
-    incrementExercises: (state, num) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
+    //adds a new exercise
+    //initializes the values of the new list element as well as the new Set List values
+    incrementExercises: (state, input) => {
+      console.log(input);
       const Slist = [
         {
           id: 1,
@@ -75,7 +111,7 @@ export const counterSlice = createSlice({
       ];
       const Evalue = 2;
       const id = state.value;
-      const Ename = "Squat";
+      const Ename = input.payload;
       const newl = state.Elist.concat({ id, Slist, Evalue, Ename });
       state.Elist = newl;
       state.value += 1;
@@ -84,7 +120,15 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { incrementExercises, incrementSets, removeSet, logSet } =
-  counterSlice.actions;
+export const {
+  incrementExercises,
+  incrementSets,
+  removeSet,
+  logSet,
+  toggleCurrentModal,
+  toggleSearchModal,
+  lbsChange,
+  repsChange,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -1,27 +1,51 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import React from "react";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
 import Modal from "react-native-modal";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggleCurrentModal,
+  toggleSearchModal,
+} from "../../store/counterSlice";
+import AddExerciseSearch from "./AddExerciseSearch";
 import WorkoutComponent from "./WorkoutComponent";
 
 export default ({ navigation }) => {
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  const dispatch = useDispatch();
+  const modalOne = useSelector((state) => state.counter.CurrentExerciseModal);
+  const modalTwo = useSelector((state) => state.counter.ExerciseSearchModal);
 
   return (
     <View>
-      <TouchableHighlight onPress={toggleModal}>
+      <TouchableNativeFeedback onPress={() => dispatch(toggleCurrentModal())}>
         <View style={styles.card}>
           <Text style={{ textAlign: "center", color: "#000", fontSize: 20 }}>
             New Empty Workout
           </Text>
         </View>
-      </TouchableHighlight>
+      </TouchableNativeFeedback>
 
       {/* Visualizing Modal onPress which renders WorkoutComponent */}
-      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+      <Modal
+        isVisible={modalOne}
+        animationIn={"bounceIn"}
+        animationOut={"fadeOut"}
+        animationInTiming={200}
+        animationOutTiming={150}
+        onBackButtonPress={() => dispatch(toggleCurrentModal())}
+        onBackdropPress={() => dispatch(toggleCurrentModal())}
+      >
+        <Modal
+          isVisible={modalTwo}
+          animationIn={"fadeIn"}
+          animationOut={"fadeOut"}
+          alignSelf={"center"}
+          onBackdropPress={() => dispatch(toggleSearchModal())}
+          onBackButtonPress={() => dispatch(toggleSearchModal())}
+        >
+          <View style={styles.modalCard2}>
+            <AddExerciseSearch />
+          </View>
+        </Modal>
         <View style={{ borderRadius: 10 }}>
           <View style={styles.modalCard}>
             <View
@@ -30,7 +54,9 @@ export default ({ navigation }) => {
                 flexDirection: "row",
               }}
             >
-              <TouchableHighlight onPress={toggleModal}>
+              <TouchableNativeFeedback
+                onPress={() => dispatch(toggleCurrentModal())}
+              >
                 <View
                   style={{
                     width: 25,
@@ -43,7 +69,7 @@ export default ({ navigation }) => {
                     X
                   </Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableNativeFeedback>
             </View>
             <View
               style={{
@@ -51,7 +77,9 @@ export default ({ navigation }) => {
                 flexDirection: "row",
               }}
             >
-              <TouchableHighlight onPress={toggleModal}>
+              <TouchableNativeFeedback
+                onPress={() => dispatch(toggleSearchModal())}
+              >
                 <View
                   style={{
                     width: 50,
@@ -71,7 +99,7 @@ export default ({ navigation }) => {
                     Finish
                   </Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableNativeFeedback>
             </View>
             <Text style={styles.text}>Exercises </Text>
             <WorkoutComponent />
@@ -105,11 +133,21 @@ const styles = StyleSheet.create({
     width: "99%",
     padding: 10,
     margin: 2,
-    opacity: 1,
     justifyContent: "center",
     backgroundColor: "#695645",
     borderWidth: 8,
     borderRadius: 10,
     borderColor: "#F9EBD7",
+  },
+  modalCard2: {
+    height: "50%",
+    width: "75%",
+    margin: 2,
+    opacity: 1,
+
+    backgroundColor: "#695645",
+    borderWidth: 8,
+    borderRadius: 10,
+    borderColor: "#695645",
   },
 });
