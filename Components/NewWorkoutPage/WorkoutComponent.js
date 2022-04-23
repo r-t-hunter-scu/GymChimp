@@ -12,10 +12,8 @@ export default ({ navigation }) => {
   const list = useSelector((state) => state.counter.Elist);
   const dispatch = useDispatch();
   const renderItem = ({ item }) => <ExerciseComponent Exercise={item.id} />;
-  console.log(list.length);
   let Exerciselist;
   if (list.length > 0) {
-    console.log("Notnull");
     Exerciselist = (
       <FlatList
         data={list}
@@ -24,7 +22,6 @@ export default ({ navigation }) => {
       />
     );
   } else {
-    console.log("null");
     Exerciselist = <View></View>;
   }
 

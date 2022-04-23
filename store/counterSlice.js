@@ -11,9 +11,7 @@ export const counterSlice = createSlice({
   },
   reducers: {
     toggleCurrentModal: (state, input) => {
-      //console.log(input);
       state.CurrentExerciseModal = !state.CurrentExerciseModal;
-      //console.log(state.CurrentExerciseModal);
     },
     toggleSearchModal: (state) => {
       state.ExerciseSearchModal = !state.ExerciseSearchModal;
@@ -38,19 +36,25 @@ export const counterSlice = createSlice({
       console.log(input);
       const lbsString = /^\d+$/.test(input.payload[1]);
       const repsString = /^\d+$/.test(input.payload[0]);
+      const Eidx = input.payload[3];
+      const Sidx = input.payload[2];
       if (
-        (lbsString || input.payload[1] == "") &&
-        (repsString || input.payload[0] == "") &&
+        (lbsString ||
+          (input.payload[1] == "" &&
+            state.Elist[Eidx].Slist[Sidx].reps != "reps")) &&
+        (repsString ||
+          (input.payload[0] == "" &&
+            state.Elist[Eidx].Slist[Sidx].lbs != "lbs")) &&
         input.payload[1].length <= 3 &&
         input.payload[0].length <= 4
       ) {
-        const Eidx = input.payload[3];
-        const Sidx = input.payload[2];
         const newl = state.Elist[Eidx].Slist;
         if (input.payload[1] != "") newl[Sidx].reps = input.payload[1];
         if (input.payload[0] != "") newl[Sidx].lbs = input.payload[0];
         newl[Sidx].completed = !newl[Sidx].completed;
         state.Elist[Eidx].Slist = newl;
+      } else if (state.Elist[Eidx].Slist[Sidx].completed) {
+        state.Elist[Eidx].Slist[Sidx].completed = false;
       } else {
         alert("Enter only digits. (max: 10,000 for lbs and 1,000 for reps)");
       }
