@@ -6,24 +6,8 @@ export const counterSlice = createSlice({
   initialState: {
     CurrentExerciseModal: false,
     ExerciseSearchModal: false,
-    value: 2,
-    Elist: [
-      {
-        id: 1,
-        Evalue: 2,
-        Ename: "Squat",
-        Slist: [
-          {
-            id: 1,
-            clbs: "",
-            creps: "",
-            lbs: "lbs",
-            reps: "reps",
-            completed: false,
-          },
-        ],
-      },
-    ],
+    value: 1,
+    Elist: [],
   },
   reducers: {
     toggleCurrentModal: (state, input) => {
@@ -102,6 +86,7 @@ export const counterSlice = createSlice({
     //initializes the values of the new list element as well as the new Set List values
     incrementExercises: (state, input) => {
       console.log(input);
+      console.log(state.Elist);
       const Slist = [
         {
           id: 1,
@@ -115,6 +100,7 @@ export const counterSlice = createSlice({
       const newl = state.Elist.concat({ id, Slist, Evalue, Ename });
       state.Elist = newl;
       state.value += 1;
+      console.log(state.Elist);
     },
   },
 });

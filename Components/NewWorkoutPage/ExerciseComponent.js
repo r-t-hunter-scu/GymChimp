@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
+import { FlatList, TouchableNativeFeedback } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementSets } from "../../store/counterSlice";
 import SetComponent from "./SetComponent";
@@ -23,11 +23,11 @@ export default ({ Exercise }) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <TouchableHighlight onPress={() => dispatch(incrementSets(Exercise - 1))}>
+      <TouchableNativeFeedback onPress={() => dispatch(incrementSets(Exercise - 1))}>
         <View style={styles.card}>
           <Text style={styles.text}>Add Set</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableNativeFeedback>
     </View>
   );
 };
