@@ -1,14 +1,15 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { Component } from 'react';
-import ExerciseSearch from '../MyComponents/ExerciseSearch';
-const Stack = createNativeStackNavigator();
-
-
+import React, { Component } from "react";
+import { View } from "react-native";
+import ExerciseSearch from "../Components/ExerciseSearchPage/ExerciseSearch";
 
 export default class ExercisePage extends Component {
   render() {
     return (
-        <ExerciseSearch/>
-      );
+      <View style={{ marginBottom: "13%" }}>
+        {/* Loads the Search page for exercises where a user can select any 
+              exercise to read more about it. */}
+        <ExerciseSearch />
+      </View>
+    );
   }
 }
