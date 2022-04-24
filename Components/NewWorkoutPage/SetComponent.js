@@ -1,9 +1,13 @@
 import React from "react";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import {
-  Swipeable,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
   TouchableNativeFeedback,
-} from "react-native-gesture-handler";
+  View,
+} from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import {
   lbsChange,

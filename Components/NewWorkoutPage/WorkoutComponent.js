@@ -1,9 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import {
-  FlatList,
-  TouchableNativeFeedback,
-} from "react-native-gesture-handler";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSearchModal } from "../../store/counterSlice";
 import ExerciseComponent from "./ExerciseComponent";

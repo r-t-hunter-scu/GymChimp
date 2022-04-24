@@ -1,8 +1,15 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import React, { Component, useState } from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
-import { TouchableNativeFeedback } from "react-native-gesture-handler";
+//import { TouchableNativeFeedback } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
 import AboutExercise from "../../AppPages/ModalPages/AboutExercise";
 import ExerciseHistory from "../../AppPages/ModalPages/ExerciseHistory";

@@ -101,7 +101,7 @@ export default ({ navigation }) => {
                 </View>
               </TouchableNativeFeedback>
             </View>
-            <Text style={styles.text}>Exercises </Text>
+            <Text style={styles.text}>Workout </Text>
             <WorkoutComponent />
           </View>
         </View>
