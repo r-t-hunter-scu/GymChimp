@@ -38,21 +38,21 @@ export default ({ navigation }) => (
       }
     >
       <Image
-        source={require("../img/time.png")}
+        source={require("../../img/time.png")}
         style={{ width: 25, height: 25 }}
       />
       <Text style={{ color: "#EFB905", fontSize: 20 }}>
         {PastWorkout[0].TimeAndPRs.Time}
       </Text>
       <Image
-        source={require("../img/total_weight.png")}
+        source={require("../../img/total_weight.png")}
         style={{ width: 25, height: 25 }}
       />
       <Text style={{ color: "#EFB905", fontSize: 20 }}>
         {PastWorkout[0].TimeAndPRs.TotalWeight}
       </Text>
       <Image
-        source={require("../img/badge.png")}
+        source={require("../../img/badge.png")}
         style={{ width: 25, height: 25 }}
       />
       <Text style={{ color: "#EFB905", fontSize: 20 }}>
