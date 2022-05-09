@@ -9,11 +9,11 @@ import {
   View,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-//import { TouchableNativeFeedback } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
-import AboutExercise from "../../AppPages/ModalPages/AboutExercise";
-import ExerciseHistory from "../../AppPages/ModalPages/ExerciseHistory";
 import { DATA } from "../../localStore/ListOfExercises";
+import AboutExercise from "./ModalPages/AboutExercise";
+import ExerciseHistory from "./ModalPages/ExerciseHistory";
+
 //How each item(exercise) on the SearchPage will be rendered
 const Item = ({ title, imgSource }) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -24,7 +24,7 @@ const Item = ({ title, imgSource }) => {
     <View>
       <TouchableNativeFeedback onPress={toggleModal}>
         <View style={styles.card}>
-          <Image source={imgSource} />
+          <Image source={imgSource} style={styles.image} />
           <Text
             style={{ color: "#F9EBD7", fontSize: 30, justifyContent: "center" }}
           >
@@ -108,6 +108,10 @@ class Search extends Component {
 export default Search;
 
 const styles = StyleSheet.create({
+  image: {
+    height: 40,
+    width: 40,
+  },
   container: {
     marginTop: 0,
     marginBottom: "38%",
@@ -125,10 +129,6 @@ const styles = StyleSheet.create({
   statusBar: {
     backgroundColor: "#EFB905",
   },
-  image: {
-    width: 30,
-    marginBottom: 15,
-  },
   modal: {
     opacity: 1,
     width: "100%",
@@ -137,14 +137,15 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "100%",
-    padding: 10,
-    margin: 0,
+    height: 50,
     opacity: 1,
     backgroundColor: "#695645",
-    borderWidth: 5,
+    borderWidth: 2,
     borderColor: "#2B2118",
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
   },
 });

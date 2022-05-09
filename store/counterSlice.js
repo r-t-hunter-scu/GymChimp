@@ -6,10 +6,18 @@ export const counterSlice = createSlice({
   initialState: {
     CurrentExerciseModal: false,
     ExerciseSearchModal: false,
+    PastWorkoutModal: false,
     value: 1,
     Elist: [],
   },
   reducers: {
+    finishWorkout: (state) => {
+      state.Elist = [];
+      state.value = 1;
+    },
+    togglePastWorkoutModal: (state, input) => {
+      state.PastWorkoutModal = !state.PastWorkoutModal;
+    },
     toggleCurrentModal: (state, input) => {
       state.CurrentExerciseModal = !state.CurrentExerciseModal;
     },
@@ -58,8 +66,10 @@ export const counterSlice = createSlice({
         const val = state.Elist[Eidx].Slist[Sidx];
         var i = val.id - 1;
         while (i < newl.length) {
-          if (input.payload[1] != "") newl[i].reps = input.payload[1];
-          if (input.payload[0] != "") newl[i].lbs = input.payload[0];
+          if (!newl[i].completed) {
+            if (input.payload[1] != "") newl[i].reps = input.payload[1];
+            if (input.payload[0] != "") newl[i].lbs = input.payload[0];
+          }
           i++;
         }
         state.Elist[Eidx].Slist = newl;
@@ -142,6 +152,8 @@ export const {
   toggleSearchModal,
   lbsChange,
   repsChange,
+  togglePastWorkoutModal,
+  finishWorkout,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

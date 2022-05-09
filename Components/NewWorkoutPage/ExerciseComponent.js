@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: "center",
     backgroundColor: "#2B2118",
+    marginTop: 10,
+    marginBottom: 30,
     borderRadius: 5,
   },
 });

@@ -27,7 +27,7 @@ const PastWorkout = [
 
 export default ({ navigation }) => (
   <View style={styles.card}>
-    <Text style={{ color: "#EFB905", fontSize: 20 }}>
+    <Text style={{ color: "#2B2118", fontSize: 20 }}>
       {PastWorkout[0].Title}
       {"\n"}
       {PastWorkout[0].Date}
@@ -41,21 +41,21 @@ export default ({ navigation }) => (
         source={require("../../img/time.png")}
         style={{ width: 25, height: 25 }}
       />
-      <Text style={{ color: "#EFB905", fontSize: 20 }}>
+      <Text style={{ color: "#2B2118", fontSize: 20 }}>
         {PastWorkout[0].TimeAndPRs.Time}
       </Text>
       <Image
         source={require("../../img/total_weight.png")}
         style={{ width: 25, height: 25 }}
       />
-      <Text style={{ color: "#EFB905", fontSize: 20 }}>
+      <Text style={{ color: "#2B2118", fontSize: 20 }}>
         {PastWorkout[0].TimeAndPRs.TotalWeight}
       </Text>
       <Image
         source={require("../../img/badge.png")}
         style={{ width: 25, height: 25 }}
       />
-      <Text style={{ color: "#EFB905", fontSize: 20 }}>
+      <Text style={{ color: "#2B2118", fontSize: 20 }}>
         {PastWorkout[0].TimeAndPRs.PRs}
       </Text>
     </View>
@@ -69,19 +69,19 @@ export default ({ navigation }) => (
         })
       }
     >
-      <Text style={{ color: "#EFB905", fontSize: 20 }}>
+      <Text style={{ color: "#2B2118", fontSize: 20 }}>
         {"Exercises"}
         {PastWorkout[0].Exercises.map((data) => (
-          <Text>
+          <Text key={data.Ex}>
             {"\n"}
             {data.Ex}
           </Text>
         ))}
       </Text>
-      <Text style={{ color: "#EFB905", fontSize: 20 }}>
+      <Text style={{ color: "#2B2118", fontSize: 20 }}>
         {"Best Set"}
         {PastWorkout[0].BestSets.map((data) => (
-          <Text>
+          <Text key={data.Ex}>
             {"\n"}
             {data.Ex}
           </Text>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     opacity: 1,
     borderRadius: 10,
     justifyContent: "center",
-    backgroundColor: "#695645",
+    backgroundColor: "#F9EBD7",
     borderWidth: 2,
     borderColor: "#EFB905",
   },

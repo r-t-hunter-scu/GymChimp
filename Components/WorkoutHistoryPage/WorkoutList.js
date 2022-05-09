@@ -1,12 +1,9 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { View } from "react-native";
 import CardAndModal from "./CardAndModal";
-var styles = StyleSheet.create({
-  content: {},
-});
 
 export default ({ navigation }) => (
-  <ScrollView>
+  <View>
     <CardAndModal />
-  </ScrollView>
+  </View>
 );
