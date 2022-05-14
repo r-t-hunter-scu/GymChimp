@@ -1,9 +1,13 @@
 import React from "react";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import {
-  Swipeable,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
   TouchableNativeFeedback,
-} from "react-native-gesture-handler";
+  View,
+} from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import {
   lbsChange,
@@ -148,10 +152,10 @@ const styles = StyleSheet.create({
   card: {
     width: "90%",
     marginLeft: "5%",
-    paddingTop: 20,
+    padding: 5,
     margin: 2,
     opacity: 1,
-    height: 75,
+    height: 50,
     backgroundColor: "#F9EBD7",
     borderWidth: 3,
     borderRadius: 10,
@@ -162,10 +166,10 @@ const styles = StyleSheet.create({
   checkedCard: {
     width: "90%",
     marginLeft: "5%",
-    paddingTop: 20,
+    padding: 5,
     margin: 2,
     opacity: 1,
-    height: 75,
+    height: 50,
     backgroundColor: "#EFB905",
     borderWidth: 3,
     borderRadius: 10,

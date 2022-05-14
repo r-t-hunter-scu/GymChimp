@@ -1,8 +1,14 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import React, { Component } from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
-import { TouchableNativeFeedback } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { DATA } from "../../localStore/ListOfExercises";
 import {
@@ -20,7 +26,7 @@ const Item = ({ title, imgSource }) => {
     <View>
       <TouchableNativeFeedback onPress={() => incrementAndClose()}>
         <View style={styles.card}>
-          <Image source={imgSource} />
+          <Image source={imgSource} style={styles.image} />
           <View style={{ flexWrap: "wrap" }}>
             <Text
               style={{
@@ -102,19 +108,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFB905",
   },
   image: {
-    width: 30,
-    marginBottom: 15,
+    width: 40,
+    height: 40,
+  },
+  container: {
+    marginBottom: 35,
+    paddingBottom: 30,
   },
   card: {
     width: "100%",
-    padding: 10,
-    margin: 0,
+    height: 50,
     opacity: 1,
     backgroundColor: "#695645",
-    borderWidth: 5,
+    borderWidth: 2,
     borderColor: "#2B2118",
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
   },
 });

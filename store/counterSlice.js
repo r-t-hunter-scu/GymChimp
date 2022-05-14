@@ -6,30 +6,20 @@ export const counterSlice = createSlice({
   initialState: {
     CurrentExerciseModal: false,
     ExerciseSearchModal: false,
-    value: 2,
-    Elist: [
-      {
-        id: 1,
-        Evalue: 2,
-        Ename: "Squat",
-        Slist: [
-          {
-            id: 1,
-            clbs: "",
-            creps: "",
-            lbs: "lbs",
-            reps: "reps",
-            completed: false,
-          },
-        ],
-      },
-    ],
+    PastWorkoutModal: false,
+    value: 1,
+    Elist: [],
   },
   reducers: {
+    finishWorkout: (state) => {
+      state.Elist = [];
+      state.value = 1;
+    },
+    togglePastWorkoutModal: (state, input) => {
+      state.PastWorkoutModal = !state.PastWorkoutModal;
+    },
     toggleCurrentModal: (state, input) => {
-      //console.log(input);
       state.CurrentExerciseModal = !state.CurrentExerciseModal;
-      //console.log(state.CurrentExerciseModal);
     },
     toggleSearchModal: (state) => {
       state.ExerciseSearchModal = !state.ExerciseSearchModal;
@@ -51,22 +41,40 @@ export const counterSlice = createSlice({
     //Logs a set when a user clicks on the checkmark on the set component
     //various text scrubbing + checking if there is currently text input in the boxes
     logSet: (state, input) => {
-      console.log(input);
+      //console.log(input);
       const lbsString = /^\d+$/.test(input.payload[1]);
       const repsString = /^\d+$/.test(input.payload[0]);
+      const Eidx = input.payload[3];
+      const Sidx = input.payload[2];
+      if (input.payload[1] == null) input.payload[1] = "";
+      if (input.payload[0] == null) input.payload[0] = "";
       if (
-        (lbsString || input.payload[1] == "") &&
-        (repsString || input.payload[0] == "") &&
+        (lbsString ||
+          (input.payload[1] == "" &&
+            state.Elist[Eidx].Slist[Sidx].reps != "reps")) &&
+        (repsString ||
+          (input.payload[0] == "" &&
+            state.Elist[Eidx].Slist[Sidx].lbs != "lbs")) &&
         input.payload[1].length <= 3 &&
         input.payload[0].length <= 4
       ) {
-        const Eidx = input.payload[3];
-        const Sidx = input.payload[2];
         const newl = state.Elist[Eidx].Slist;
         if (input.payload[1] != "") newl[Sidx].reps = input.payload[1];
         if (input.payload[0] != "") newl[Sidx].lbs = input.payload[0];
         newl[Sidx].completed = !newl[Sidx].completed;
+        //Changing the values of all sets coming after
+        const val = state.Elist[Eidx].Slist[Sidx];
+        var i = val.id - 1;
+        while (i < newl.length) {
+          if (!newl[i].completed) {
+            if (input.payload[1] != "") newl[i].reps = input.payload[1];
+            if (input.payload[0] != "") newl[i].lbs = input.payload[0];
+          }
+          i++;
+        }
         state.Elist[Eidx].Slist = newl;
+      } else if (state.Elist[Eidx].Slist[Sidx].completed) {
+        state.Elist[Eidx].Slist[Sidx].completed = false;
       } else {
         alert("Enter only digits. (max: 10,000 for lbs and 1,000 for reps)");
       }
@@ -79,6 +87,7 @@ export const counterSlice = createSlice({
       const newl = state.Elist[Eidx].Slist.filter(function (ele) {
         return ele != val;
       });
+      //decrements set values
       var i = val.id - 1;
       while (i < newl.length) {
         newl[i].id -= 1;
@@ -91,8 +100,19 @@ export const counterSlice = createSlice({
     incrementSets: (state, input) => {
       const idx = input.payload;
       const id = state.Elist[idx].Evalue;
-      const lbs = "lbs";
-      const reps = "reps";
+      var lbs = "lbs";
+      var reps = "reps";
+      var i = id - 2;
+      //console.log(i);
+      const listCopy = state.Elist[idx].Slist;
+      while (i >= 0) {
+        if (state.Elist[idx].Slist[i].completed) {
+          lbs = state.Elist[idx].Slist[i].lbs;
+          reps = state.Elist[idx].Slist[i].reps;
+          break;
+        }
+        i--;
+      }
       const completed = false;
       const newl = state.Elist[idx].Slist.concat({ id, lbs, reps, completed });
       state.Elist[idx].Slist = newl;
@@ -101,12 +121,14 @@ export const counterSlice = createSlice({
     //adds a new exercise
     //initializes the values of the new list element as well as the new Set List values
     incrementExercises: (state, input) => {
-      console.log(input);
+      //console.log(input);
+      //console.log(state.Elist);
       const Slist = [
         {
           id: 1,
           lbs: "lbs",
           reps: "reps",
+          completed: false,
         },
       ];
       const Evalue = 2;
@@ -115,6 +137,7 @@ export const counterSlice = createSlice({
       const newl = state.Elist.concat({ id, Slist, Evalue, Ename });
       state.Elist = newl;
       state.value += 1;
+      //console.log(state.Elist);
     },
   },
 });
@@ -129,6 +152,8 @@ export const {
   toggleSearchModal,
   lbsChange,
   repsChange,
+  togglePastWorkoutModal,
+  finishWorkout,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

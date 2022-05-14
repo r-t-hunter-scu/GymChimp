@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementSets } from "../../store/counterSlice";
 import SetComponent from "./SetComponent";
@@ -16,23 +16,42 @@ export default ({ Exercise }) => {
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
-      <Text style={styles.text}>{Elist.Ename}</Text>
+      <Text style={styles.title}>{Elist.Ename}</Text>
+      <Text style={styles.text2}>
+        {"Set" + "     " + "Past" + "          " + "Lbs" + "        " + "Reps"}
+      </Text>
       {/* rendering list of sets */}
       <FlatList
         data={list}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <TouchableHighlight onPress={() => dispatch(incrementSets(Exercise - 1))}>
+      <TouchableNativeFeedback
+        onPress={() => dispatch(incrementSets(Exercise - 1))}
+      >
         <View style={styles.card}>
           <Text style={styles.text}>Add Set</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableNativeFeedback>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  title: {
+    alignSelf: "flex-start",
+    color: "white",
+    fontSize: 20,
+    marginLeft: 20,
+    textAlign: "center",
+  },
+  text2: {
+    color: "white",
+    fontSize: 15,
+    textAlign: "center",
+    marginLeft: 20,
+    alignSelf: "flex-start",
+  },
   text: {
     color: "white",
     fontSize: 20,
@@ -42,6 +61,8 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: "center",
     backgroundColor: "#2B2118",
+    marginTop: 10,
+    marginBottom: 30,
     borderRadius: 5,
   },
 });

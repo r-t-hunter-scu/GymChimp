@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
 import Modal from "react-native-modal";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  finishWorkout,
   toggleCurrentModal,
   toggleSearchModal,
 } from "../../store/counterSlice";
@@ -14,6 +15,10 @@ export default ({ navigation }) => {
   const modalOne = useSelector((state) => state.counter.CurrentExerciseModal);
   const modalTwo = useSelector((state) => state.counter.ExerciseSearchModal);
 
+  const finish = () => {
+    dispatch(finishWorkout());
+    dispatch(toggleCurrentModal());
+  };
   return (
     <View>
       <TouchableNativeFeedback onPress={() => dispatch(toggleCurrentModal())}>
@@ -77,9 +82,7 @@ export default ({ navigation }) => {
                 flexDirection: "row",
               }}
             >
-              <TouchableNativeFeedback
-                onPress={() => dispatch(toggleSearchModal())}
-              >
+              <TouchableNativeFeedback onPress={() => finish()}>
                 <View
                   style={{
                     width: 50,
@@ -101,7 +104,7 @@ export default ({ navigation }) => {
                 </View>
               </TouchableNativeFeedback>
             </View>
-            <Text style={styles.text}>Exercises </Text>
+            <Text style={styles.text}>Workout </Text>
             <WorkoutComponent />
           </View>
         </View>
@@ -140,13 +143,13 @@ const styles = StyleSheet.create({
     borderColor: "#F9EBD7",
   },
   modalCard2: {
-    height: "50%",
-    width: "75%",
+    height: 500,
+    width: 275,
     margin: 2,
-    opacity: 1,
+    padding: 1,
 
     backgroundColor: "#695645",
-    borderWidth: 8,
+    borderWidth: 4,
     borderRadius: 10,
     borderColor: "#695645",
   },
