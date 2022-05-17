@@ -38,6 +38,8 @@ export const counterSlice = createSlice({
       state.Elist[input.payload[3]].Slist[input.payload[2]].creps =
         input.payload[1];
     },
+
+    
     //Logs a set when a user clicks on the checkmark on the set component
     //various text scrubbing + checking if there is currently text input in the boxes
     logSet: (state, input) => {
@@ -125,15 +127,15 @@ export const counterSlice = createSlice({
       //console.log(state.Elist);
       const Slist = [
         {
-          id: 1,
+          id: 1, // id of Slist
           lbs: "lbs",
           reps: "reps",
-          completed: false,
-        },
+          completed: false, // only storing complete sets so ignore this shizz
+        }, // this is the set list
       ];
-      const Evalue = 2;
-      const id = state.value;
-      const Ename = input.payload;
+      const Evalue = 2; // flat lists need unique id, which is this for the "new1" list
+      const id = state.value; // total number of exercises in current workout session
+      const Ename = input.payload; // what is being passed to the funciton, key word, dependent on "input" param
       const newl = state.Elist.concat({ id, Slist, Evalue, Ename });
       state.Elist = newl;
       state.value += 1;
