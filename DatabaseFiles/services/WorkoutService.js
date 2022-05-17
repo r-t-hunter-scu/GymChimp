@@ -1,5 +1,9 @@
 import http from "../http-common";
 
+/*
+THIS IS FOR FRONTEND TO USE I THINK
+*/
+
 // const getAll = () => {
 //   return http.get("/workouts");
 // };
@@ -39,3 +43,6 @@ const WorkoutService = {
 };
 
 export default WorkoutService;
+
+// This is the code called within the application!
+// just need to figure out the correct urls to provide

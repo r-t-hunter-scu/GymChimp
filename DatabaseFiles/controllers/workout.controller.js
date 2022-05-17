@@ -1,5 +1,5 @@
 const db = require("../db_Models");
-const Workout = db.new_workout;
+const Workout = db.workout;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new workout
@@ -76,3 +76,11 @@ exports.delete = (req, res) => {
 exports.deleteAll = (req, res) => {
   
 };
+
+// create a new workout: create(object)
+// find a workout by id: findByPk(id)
+// get all workouts: findAll()
+// update a workout by id: update(data, where: { id: id })
+// remove a workout: destroy(where: { id: id })
+// remove all workouts: destroy(where: {})
+// find all workouts by lift: findAll({ where: { title: ... } })

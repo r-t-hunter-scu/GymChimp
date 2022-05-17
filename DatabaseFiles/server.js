@@ -1,11 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const db = require("./app/models")
-
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+const db = require("./db_Models");
+const { sequelize } = require("./db_Models");
+const workout = require("./db_Models/workout.model");
 
 var corsOptions = {
   origin: "http://localhost:3306"
@@ -16,13 +14,18 @@ app.use(cors(corsOptions));
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+
+
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+
+  workout.create
+
 });
-require("../routes/new_workout.routes.js")(app);
+
+require("./routes/workout.routes.js")(app);
 // set port, listen for requests
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
